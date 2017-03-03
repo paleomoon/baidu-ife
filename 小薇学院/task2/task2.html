@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>任务二：零基础HTML及CSS编码（一）</title>
+	<style type="text/css">
+		body,h1{
+			margin: 0;
+			background-color: #ccc;
+			/*padding: 0;*/
+		}
+		h1{
+
+			width: 100%;
+			height: 50px;
+			background-color: #555;
+			line-height: 50px;  /*垂直居中*/
+			padding-left: 20px;
+		}
+		#navigation_bar {
+			position: absolute;
+			top: 0;
+			right: 10px;
+		}
+		#navigation_bar li{
+			display: inline-block;
+			
+		}
+		#navigation_bar li a{
+			color: white;
+			text-decoration: none;
+		}
+		.article,.imgBox,#side_column{
+			margin: 20px;
+			padding: 20px;
+			background-color: white;
+			border-right: 2px solid #888;
+			border-bottom: 2px solid #888;
+		}
+		h3,.author,.date{
+			color: #888;
+		}
+		/*只作用于article第一子代*/
+		.article>p{
+			text-indent: 32px;
+		}
+		.author,.date{
+			font-size: 14px;
+		}
+		dd{
+			width: 120px;
+			border: 1px solid #ccc;
+			padding: 10px;
+			margin-bottom: 10px;
+			text-align: center;
+		}
+		dd>p{
+			font-size: 12px;
+		}
+		table{
+			width: 100%;
+			border-collapse: collapse;
+		}
+		table tr td,th{
+			border:1px solid #000;
+		}
+		thead{
+			background-color: #666;
+		}
+		tfoot{
+			background-color: #bbb;
+		}
+		#form1{
+			/*text-align: center;*/
+			position: relative;
+		}
+		#foot{
+			width: 100%;
+			height: 50px;
+			position: absolute;
+		
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+		.left{
+			display: inline-block;
+			position: absolute;
+			right: 60%;
+
+		}
+		
+		#submitBTN{
+			width: 100%;
+			height: 50px;
+			background-color: #44f;
+			color: white;
+		}
+		.right{
+			margin-left: 42%;
+		}
+		.rightHint{
+			font-size: 10px;
+			color: #ccc;
+			position: relative;
+			top: -10px;
+			left: 42%;
+		}
+
+	</style>
+</head>
+<body>
+<h1>JimHoo的官方网站</h1>
+<ul id="navigation_bar">
+	<li><a href="#">首页</a></li>
+	<li><a href="#">文章</a></li>
+	<li><a href="#">代码</a></li>
+	<li><a href="#">关于</a></li>
+</ul>
+<div class="article">
+<h2>我的第一篇文章</h2>
+<h3>HTML的那些事儿</h3>
+<span class="author date">JimHoo 20170224</span>
+<p><b>万维网</b>上的一个超媒体文档称之为一个页面（外语：page）。作为一个组织或者个人在万维网上放置开始点的页面称为主页（外语：Homepage）或首页，主页中通常包括有指向其他相关页面或其他节点的指针（超级链接），所谓超级链接，就是一种统一资源定位器（Uniform Resource Locator，外语缩写：URL）指针，通过激活（点击）它，可使浏览器方便地获取新的网页。这也是HTML获得广泛应用的最重要的原因之一。在逻辑上将视为一个整体的一系列页面的有机集合称为网站（Website或Site）。超级文本标记语言（英文缩写：HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。</br>
+网页的本质就是超级文本标记语言，通过结合使用其他的Web技术（如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。因而，超级文本标记语言是万维网（Web）编程的基础，也就是说万维网是建立在超文本基础之上的。超级文本标记语言之所以称为超文本标记语言，是因为文本中包含了所谓“<b>超级链接</b>”点。
+<a href="http://ife.baidu.com/">点击链接进入百度前端学院</a>
+</p>
+<img width="50%" height="50%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
+<p><b>超级文本标记语言</b>是标准通用标记语言下的一个应用，也是一种规范，一种标准，
+ 它通过标记符号来标记要显示的网页中的各个部分。网页文件本身是一种文本文件，通过在文本文件中添加标记符，可以告诉浏览器如何显示其中的内容（如：文字如何处理，画面如何安排，图片如何显示等）。浏览器按顺序阅读网页文件，然后根据标记符解释和显示其标记的内容，对书写出错的标记将不指出其错误，且不停止其解释执行过程，编制者只能通过显示效果来分析出错原因和出错部位。但需要注意的是，对于不同的浏览器，对同一标记符可能会有不完全相同的解释，因而可能会有不同的显示效果。
+<a href="http://ife.baidu.com/" target="_blank">点击链接打开新窗口进入百度前端学院</a>
+</div>
+	<div class="article">
+	<h2>我的第二篇文章</h2>
+	<h3>关于HTML</h3>
+	<span class="author date">JimHoo 20170224</span>
+	<p>万维网上的一个超媒体文档称之为一个页面（外语：page）。作为一个组织或者个人在万维网上放置开始点的页面称为主页（外语：Homepage）或首页，主页中通常包括有指向其他相关页面或其他节点的指针（超级链接），所谓超级链接，就是一种统一资源定位器（Uniform Resource Locator，外语缩写：URL）指针，通过激活（点击）它，可使浏览器方便地获取新的网页。这也是HTML获得广泛应用的最重要的原因之一。在逻辑上将视为一个整体的一系列页面的有机集合称为网站（Website或Site）。超级文本标记语言（英文缩写：HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。</br>
+	网页的本质就是超级文本标记语言，通过结合使用其他的Web技术（如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。因而，超级文本标记语言是万维网（Web）编程的基础，也就是说万维网是建立在超文本基础之上的。超级文本标记语言之所以称为超文本标记语言，是因为文本中包含了所谓“超级链接”点。
+	<a href="http://ife.baidu.com/" target="_blank">点击链接打开新窗口进入百度前端学院</a>
+	</p>
+	<img width="50%" height="50%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
+	<ul>
+		<li>HTML</li>
+		<li>CSS</li>
+		<li>Javascript</li>
+	</ul>
+</div>
+<div class="imgBox">
+	<h2>图片</h2>
+	<dl>
+		<dd>
+			<p>好看的图片</p>
+			<img width="100px" height="100px%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
+		</dd>
+		<dd>
+			<p>好看的图片</p>
+			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
+		</dd>
+		<dd>
+			<p>好看的图片</p>
+			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
+		</dd>
+		<dd>
+			<p>好看的图片</p>
+			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
+		</dd>
+		<dd>
+			<p>好看的图片</p>
+			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
+		</dd>
+	</dl>
+</div>
+
+<div class="article">
+	<h2>我的最后一篇文章</h2>
+	<h3>零基础HTML编码</h3>
+	<span class="author date">JimHoo 20170224</span>
+	<ol>
+		<li>文章1</li>
+		<li>文章2</li>
+		<li>文章3</li>
+	</ol>
+	数据统计表格
+	<table border="1">
+	<thead>
+		<tr>
+			<th>表头</th>
+			<th>表头</th>
+			<th>表头</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>内容</td>
+			<td>内容</td>
+			<td><a href="#">增加</a></td>
+		</tr>
+			<tr>
+			<td>内容</td>
+			<td>内容</td>
+			<td><a href="#">删除</a></td>
+		</tr>
+			<tr>
+			<td>内容</td>
+			<td>内容</td>
+			<td><a href="#">修改</a></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		</tr>
+			<tr>
+			<td>总计</td>
+			<td colspan="2">1000</td>
+
+		</tr>
+	</tfoot>
+		
+	</table>
+</div>
+<div id="side_column">
+	<h3>侧栏标题</h3>
+
+	<div id="form1">
+		<p><span class="left">请输入邮箱地址：</span>
+		<input  class="right" type="text" placeholder="这是一个文本输入框"></p>
+
+		<p><span class="rightHint">邮箱地址请按要求输入格式</span></p>
+
+		<p><span class="left">请输入密码：</span>
+		<input  class="right" type="password" placeholder="********"></p>
+
+		<p><span class="left">请重复输入密码：</span>
+		<input  class="right" type="password" placeholder="********"></p>
+
+		<p><span class="rightHint">密码请为6-16位英文数字</span></p>
+
+		<p>
+		<span class="left">性别：</span>
+		<input type="radio" name="gender" value="男" checked="checked" class="right">男<input type="radio" name="gender" value="女">女</p>
+
+		<p>
+		<span class="left">城市：</span>
+		<select  class="right">
+			<option selected="selected">北京</option>
+			<option>上海</option>
+			<option>广州</option>
+			<option>深圳</option>
+		</select>
+		</p>
+
+		<p>
+		<span class="left">爱好：</span>
+		<input  class="right" type="checkbox" value="电影">电影<input type="checkbox" value="音乐">音乐<input type="checkbox" value="代码">代码
+		</p>
+
+		<p>
+		<span class="left">个人描述：</span>
+		<textarea  class="right" rows="6" cols="70%" >这是一个多行输入框，输入个人描述</textarea>
+		</p>
+
+		<p>
+		<input type="submit" name="" value="确认提交" id="submitBTN">
+		</p>
+	</div>
+</div>
+<div id="foot">
+	<p>版权所有©</p>
+</div>
+
+</body>
+</html>
