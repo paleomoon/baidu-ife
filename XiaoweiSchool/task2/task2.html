@@ -37,8 +37,9 @@
 			margin: 20px;
 			padding: 20px;
 			background-color: white;
-			border-right: 2px solid #888;
-			border-bottom: 2px solid #888;
+		/*	border-right: 2px solid #888;
+			border-bottom: 2px solid #888;*/
+			box-shadow: 2px 2px 3px 1px #666;/*阴影，水平竖直 模糊 大小的顺序*/
 		}
 		h3,.author,.date{
 			color: #888;
@@ -50,15 +51,16 @@
 		.author,.date{
 			font-size: 14px;
 		}
-		dd{
+		#imgList li{
 			width: 122px;
 			height: 140px;
 			border: 1px solid #ccc;
 			padding-bottom: 10px;
 			margin-bottom: 10px;
 			text-align: center;
+			list-style: none;
 		}
-		dd>p{
+		#imgList p{
 			font-size: 12px;
 		}
 		table{
@@ -100,8 +102,8 @@
 			height: 50px;
 			background-color: #44f;
 			color: white;
-			-moz-border-radius:80px;
-		    -webkit-border-radius:80px;
+			-moz-border-radius:10px;
+		    -webkit-border-radius:10px;
 		    border-radius:10px;/*css3圆角按钮*/
 			/*border: none;*/
 			outline:none; /*位于边框边缘的外围的一条线，可起到突出元素的作用*/
@@ -157,28 +159,28 @@
 </div>
 <div class="imgBox">
 	<h2>图片</h2>
-	<dl>
-		<dd>
+	<ul id="imgList">
+		<li >
 			<p>好看的图片</p>
 			<img width="100px" height="100px%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
-		</dd>
-		<dd>
+		</li>
+		<li>
 			<p>好看的图片</p>
 			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
-		</dd>
-		<dd>
+		</li>
+		<li>
 			<p>好看的图片</p>
 			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
-		</dd>
-		<dd>
+		</li>
+		<li>
 			<p>好看的图片</p>
 			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
-		</dd>
-		<dd>
+		</li>
+		<li>
 			<p>好看的图片</p>
 			<img width="100px" height="100px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488391256575&di=adca8f33dd1559b314c4a52f56c63136&imgtype=0&src=http%3A%2F%2Fe.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F77094b36acaf2eddef675a92881001e939019332.jpg">
-		</dd>
-	</dl>
+		</li>
+	</ul>
 </div>
 
 <div class="article">
