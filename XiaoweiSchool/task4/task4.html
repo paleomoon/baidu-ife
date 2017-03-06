@@ -7,37 +7,20 @@
 			margin: 0;
 			padding: 0;
 		}
-		.parent{
-			width: 60%;
-			height: 670px;
-			border: 1px solid #aaa;
-			position: relative;
-		}
-		.child{
+		
+		.box{
 			width: 400px;
 			height: 200px;
 			background-color: #ccc;
-			margin:0 auto;/*水平居中*/
-
-			/*垂直居中*/
-			position: relative;
-			top: 50%;/* 父元素高度的50% */
-			margin-top: -100px;
-  			/*transform: translateY(-50%);/* 转换 向上移动自身高度的50% */
-
 			overflow: hidden;
-		}
-		.left_top{
-			width: 100px;
-			height: 100px;
-			background-color: #fc0;
-			-moz-border-radius:50%;
-		    -webkit-border-radius:50%;
-			border-radius: 50%;
+
 			position: absolute;
-			left: -50px;
-			top: -50px;
+			top: 50%;/* 父元素高度的50% */
+			left: 50%;
+			margin: -100px 0 0 -200px;
+			/*transform: translate(-50%, -50%);/* 移动自身高度的50% */
 		}
+		.left_top,
 		.right_bottom{
 			width: 100px;
 			height: 100px;
@@ -46,22 +29,29 @@
 		    -webkit-border-radius:50%;
 			border-radius: 50%;
 			position: absolute;
+
+		}
+		.left_top{
+			left: -50px;
+			top: -50px;
+		}
+		.right_bottom{
 			right: -50px;
 			bottom: -50px;
 		}
 	</style>
 </head>
 <body>
-<div class="parent">
-	<div class="child">
-		<div class="left_top">
-			
-		</div>
-		<div class="right_bottom">
-			
-		</div>
+
+<div class="box">
+	<div class="left_top">
+		
+	</div>
+	<div class="right_bottom">
+		
 	</div>
 </div>
+
 
 
 </body>
