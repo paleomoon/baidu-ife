@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>任务五：零基础HTML及CSS编码（二）</title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			background-color: #ccc;
+			/*padding: 0;*/
+		}
+		header{
+
+			width: 100%;
+			height: 60px;
+			background-color: #555;
+			line-height: 60px;  /*垂直居中*/
+			padding-left: 20px;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		#navigation_bar {
+			position: absolute;
+			top: 10px;
+			right: 20px;
+		}
+
+		#navigation_bar li{
+			display: inline-block;
+			
+		}
+		ul li{
+			list-style: none;
+		}
+		#navigation_bar li a{
+			color: white;
+			text-decoration: none;
+		}
+		.article,.imgBox{
+			margin: 20px 442px 20px 20px;
+			padding: 20px;
+			background-color: white;
+		
+			box-shadow: 2px 2px 3px 1px #666;/*阴影，水平竖直 模糊 大小的顺序*/
+			overflow: auto;
+		}
+		aside h1::before{
+			content: "|";
+			font-size:1.7em;
+			vertical-align: middle;
+			color: #EAEAEA;
+		}
+		h3{
+			color: #888;
+		}
+		.author,.date{
+			color: #888;
+			font-size: 14px;
+		}
+		/*只作用于article第一子代*/
+		.article>p{
+			text-indent: 32px;
+		}
+		.imgBox figure{
+			width: 122px;
+			height: 138px;
+			border: 1px solid #ccc;
+			padding-bottom: 10px;
+			margin: 10px;
+			text-align: center;
+			float: left;
+		}
+
+		.imgBox figcaption{
+			font-size: 12px;
+			margin: 10px auto;
+		}
+		table{
+			width: 100%;
+			border-collapse: collapse;
+		}
+		table tr td,th{
+			border:1px solid #ccc;
+		}
+		thead{
+			color: white;
+			background-color: #666;
+			text-align: left;
+		}
+		tfoot{
+			background-color: #bbb;
+		}
+		#form1{
+			/*text-align: center;*/
+			position: relative;
+
+		}
+		
+		footer{
+			width: 100%;
+			height: 50px;
+			position: absolute;
+		
+			background-color: black;
+			color: white;
+			text-align: center;
+		}
+		.left_text{
+			display: inline-block;
+			position: absolute;
+			right: 65%;
+		}
+		#submitBtn{
+			width: 350px;
+			height: 50px;
+			margin: 0 25px;
+			background-color: #44f;
+			color: white;
+			-moz-border-radius:10px;
+		    -webkit-border-radius:10px;
+		    border-radius:10px;/*css3圆角按钮*/
+			/*border: none;*/
+			outline:none; /*位于边框边缘的外围的一条线，可起到突出元素的作用*/
+		}
+		.right_controls{
+			margin-left: 36%;
+		}
+		.right_hint{
+			font-size: 10px;
+			color: #ccc;
+			position: relative;
+			top: -10px;
+			left: 36%;
+		}
+		#main{
+			width: 100%;
+			position: relative;
+			
+			border: 1px solid #000;
+		}
+		aside{
+			background-color: white;
+		
+			box-shadow: 2px 2px 3px 1px #666;
+			width: 400px;
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			
+		}
+
+	</style>
+</head>
+<body>
+<header>JimHoo的官方网站</header>
+<nav>
+	<ul id="navigation_bar">
+		<li><a href="#">首页</a></li>
+		<li><a href="#">文章</a></li>
+		<li><a href="#">代码</a></li>
+		<li><a href="#">关于</a></li>
+	</ul>
+</nav>
+<div id="main">
+<article class="article">
+<h1>我的第一篇文章</h1>
+<h3>HTML的那些事儿</h3>
+<span class="author date">JimHoo <time pubdate="2017-02-24">20170224</time></span>
+<p><b>万维网</b>上的一个超媒体文档称之为一个页面（外语：page）。作为一个组织或者个人在万维网上放置开始点的页面称为主页（外语：Homepage）或首页，主页中通常包括有指向其他相关页面或其他节点的指针（超级链接），所谓超级链接，就是一种统一资源定位器（Uniform Resource Locator，外语缩写：URL）指针，通过激活（点击）它，可使浏览器方便地获取新的网页。这也是HTML获得广泛应用的最重要的原因之一。在逻辑上将视为一个整体的一系列页面的有机集合称为网站（Website或Site）。超级文本标记语言（英文缩写：HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。<br>
+网页的本质就是超级文本标记语言，通过结合使用其他的Web技术（如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。因而，超级文本标记语言是万维网（Web）编程的基础，也就是说万维网是建立在超文本基础之上的。超级文本标记语言之所以称为超文本标记语言，是因为文本中包含了所谓“<b>超级链接</b>”点。
+<a href="http://ife.baidu.com/">点击链接进入百度前端学院</a>
+</p>
+<img width="50%" height="50%" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+<p><b>超级文本标记语言</b>是标准通用标记语言下的一个应用，也是一种规范，一种标准，
+ 它通过标记符号来标记要显示的网页中的各个部分。网页文件本身是一种文本文件，通过在文本文件中添加标记符，可以告诉浏览器如何显示其中的内容（如：文字如何处理，画面如何安排，图片如何显示等）。浏览器按顺序阅读网页文件，然后根据标记符解释和显示其标记的内容，对书写出错的标记将不指出其错误，且不停止其解释执行过程，编制者只能通过显示效果来分析出错原因和出错部位。但需要注意的是，对于不同的浏览器，对同一标记符可能会有不完全相同的解释，因而可能会有不同的显示效果。
+<a href="http://ife.baidu.com/" target="_blank">点击链接打开新窗口进入百度前端学院</a>
+</article>
+<article class="article">
+	<h1>我的第二篇文章</h1>
+	<h3>关于HTML</h3>
+	<span class="author date">JimHoo <time pubdate="2017-02-24">20170224</time></span>
+	<p>万维网上的一个超媒体文档称之为一个页面（外语：page）。作为一个组织或者个人在万维网上放置开始点的页面称为主页（外语：Homepage）或首页，主页中通常包括有指向其他相关页面或其他节点的指针（超级链接），所谓超级链接，就是一种统一资源定位器（Uniform Resource Locator，外语缩写：URL）指针，通过激活（点击）它，可使浏览器方便地获取新的网页。这也是HTML获得广泛应用的最重要的原因之一。在逻辑上将视为一个整体的一系列页面的有机集合称为网站（Website或Site）。超级文本标记语言（英文缩写：HTML）是为“网页创建和其它可在网页浏览器中看到的信息”设计的一种标记语言。</br>
+	网页的本质就是超级文本标记语言，通过结合使用其他的Web技术（如：脚本语言、公共网关接口、组件等），可以创造出功能强大的网页。因而，超级文本标记语言是万维网（Web）编程的基础，也就是说万维网是建立在超文本基础之上的。超级文本标记语言之所以称为超文本标记语言，是因为文本中包含了所谓“超级链接”点。
+	<a href="http://ife.baidu.com/" target="_blank">点击链接打开新窗口进入百度前端学院</a>
+	</p>
+	<img width="50%" height="50%" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+	<ul>
+		<li>HTML</li>
+		<li>CSS</li>
+		<li>Javascript</li>
+	</ul>
+</article>
+<article class="imgBox">
+	<h1>图片</h1>
+		<figure >
+		
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+		
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+		<figure >
+			<figcaption>好看的图片</figcaption>
+			<img width="100px" height="100px" src="http://omcbb8o2a.bkt.clouddn.com/timg.jpg">
+		</figure>
+
+	
+
+</article>
+
+<article class="article">
+	<h1>我的最后一篇文章</h1>
+	<h3>零基础HTML编码</h3>
+	<span class="author date">JimHoo <time pubdate="2017-02-24">20170224</time></span>
+	<ol>
+		<li>文章1</li>
+		<li>文章2</li>
+		<li>文章3</li>
+	</ol>
+	
+	<table border="1" summary="数据统计表格">
+	<caption>数据统计表格</caption>
+	<thead>
+		<tr>
+			<th>表头</th>
+			<th>表头</th>
+			<th>表头</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>内容</td>
+			<td>内容</td>
+			<td><a href="#">增加</a></td>
+		</tr>
+			<tr>
+			<td>内容</td>
+			<td>内容</td>
+			<td><a href="#">删除</a></td>
+		</tr>
+			<tr>
+			<td>内容</td>
+			<td>内容</td>
+			<td><a href="#">修改</a></td>
+		</tr>
+	</tbody>
+	<tfoot>
+		</tr>
+			<tr>
+			<td>总计</td>
+			<td colspan="2">1000</td>
+
+		</tr>
+	</tfoot>
+		
+	</table>
+</article>
+<aside id="side_column">
+	<h1>侧栏标题</h1>
+
+	<form id="form1">
+		<p>
+			<label class="left_text" for="email">请输入邮箱地址　</label>
+			<input  class="right_controls" type="text" placeholder="这是一个文本输入框" id="email">
+		</p>
+
+		<p><span class="right_hint">邮箱地址请按要求输入格式</span></p>
+
+		<p>
+			<label class="left_text" for="password">请输入密码　</label>
+			<input  class="right_controls" type="password" placeholder="********" id="password">
+		</p>
+
+		<p>
+			<label class="left_text" for="password_again">请重复输入密码　</label>
+			<input  class="right_controls" type="password" placeholder="********" id="password_again">
+		</p>
+
+		<p><span class="right_hint">密码请为6-16位英文数字</span></p>
+
+		<p>
+			<span class="left_text" >性别　</span>
+			<input type="radio" name="gender" value="男" checked="checked" class="right_controls" id="male">
+			<label for="male">男</label>
+			<input type="radio" name="gender" value="女">
+			<label for="female">女</label>
+		</p>
+
+		<p>
+			<label class="left_text" for="city">城市　</label>
+			<select  class="right_controls" id="city">
+				<option selected="selected">北京</option>
+				<option>上海</option>
+				<option>广州</option>
+				<option>深圳</option>
+			</select>
+		</p>
+
+		<p>
+			<span class="left_text">爱好　</span>
+			<input  class="right_controls" type="checkbox" value="电影" id="movie">
+			<label for="moive">电影</label>
+			<input type="checkbox" value="音乐" id="music">
+			<label for="music">音乐</label>
+			<input type="checkbox" value="代码" id="codding">
+			<label for="codding">代码</label>
+		</p>
+
+		<p>
+			<label class="left_text" for="description">个人描述　</label>
+			<textarea  class="right_controls" rows="6" cols="30%" id="description">这是一个多行输入框，输入个人描述</textarea>
+		</p>
+
+		<p>
+		<input type="submit" name="" value="确认提交" id="submitBtn">
+		</p>
+	</form>
+</aside>
+</div>
+<footer class="foot">
+	<p>版权所有©</p>
+</footer>
+
+</body>
+</html>
