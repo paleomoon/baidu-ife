@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>任务七：实现常见的技术产品官网的页面架构及样式布局</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" href="task7.css">
+    <link rel="stylesheet" href="select.css">
+    <link rel="shortcut icon" href="http://omcbb8o2a.bkt.clouddn.com/logo.jpg">
+</head>
+<body>
+<div id="container">
+    <div id="head" name="top">
+        <div class="logo"></div>
+        <div id="new-world">新世界</div>
+        <ul id="nav">
+            <li><a href="#"><span>首页</span></a></li>
+            <li><a href="#"><span>最新活动</span></a></li>
+            <li><a href="#"><span>项目介绍</span></a></li>
+            <li><a href="#"><span>爱心社区</span></a></li>
+            <li><a href="#"><span>关于我们</span></a></li>
+        </ul>
+        <div id="login">
+            <div class="login-logo" ></div>
+            <a href="#">登录</a>
+        </div>
+    </div>
+     <div id="main">
+            <div class="main-img-cont">
+                <div id="text1">Time of new life</div>
+                <div id="text2">新时代，年轻的人们让我们一起<br>体验新生活，享受新生活</div>
+                <input id="start" type="button" value="开始体验">
+                <!-- <img src="main_img.png" width="1280" height="854">
+                <div class="mask-layer"></div> -->
+            </div>
+            
+            <div class="feature">
+                <img src="circle.png">
+                <div id="first-feat">打造全新世界观，让你更<br>爱你的生活</div>
+            </div>
+            <div class="feature">
+                <img src="flag.png">
+                <div>丰富多彩的公益活动，发<br>挥新世界的主人公意识</div>
+            </div>
+            <div class="feature">
+                <img src="flower.png">
+                <div>时尚的新理念，超前体验<br>未知的生活</div>
+            </div>
+            <div class="feature">
+                <img src="rect.png">
+                <div id="last-feat">完善的培养机制，培养你<br>全新的世界观</div>
+            </div>
+     </div>
+     <div id="activities">
+         <div class="title">
+             <img src="activity_book.png">
+             <div>关于新世界，你不知道的还有什么？</div>
+         </div>
+         <div class="search-part">
+             <div class="map"></div>
+             <div class="mask-layer"></div>
+             <div class="text1">查找新世界城市活动信息</div>
+             <div class="line"></div>
+             <div class="text2">每个城市有不同的活动信息，请自助查询您所需要了解的城市</div>
+             <form >
+                 <fieldset class="radio-container">
+                    <div class="radio-options">
+                        <div class="toggle">国家</div>
+                        <ul>
+                           <li>
+                                <input type="radio" name="country" id="China" value="China">
+                                <label for="China"><span ></span>中国</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="country" id="America" value="America">
+                                <label for="America"><span ></span>美国</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="country" id="Japan" value="Japan">
+                                <label for="Japan"><span ></span>日本</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="country" id="Korea" value="Korea">
+                                <label for="Korea"><span ></span>韩国</label>
+                            </li>
+                              
+                        </ul>
+                    </div>
+                </fieldset>
+                 <fieldset class="radio-container">
+                    <div class="radio-options">
+                        <div class="toggle">省份</div>
+                        <ul>
+                           <li>
+                                <input type="radio" name="province" id="BeiJingCity" value="BeiJingCity">
+                                <label for="BeiJingCity"><span ></span>北京市</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="province" id="ShangHaiCity" value="ShangHaiCity">
+                                <label for="ShangHaiCity"><span ></span>上海市</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="province" id="HuNan" value="HuNan">
+                                <label for="HuNan"><span ></span>湖南省</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="province" id="GuangDong" value="GuangDong">
+                                <label for="GuangDong"><span ></span>广东省</label>
+                            </li>
+                              
+                        </ul>
+                    </div>
+                </fieldset>
+                 <fieldset class="radio-container">
+                    <div class="radio-options">
+                        <div class="toggle">城市</div>
+                        <ul>
+                           <li>
+                                <input type="radio" name="city" id="BeiJing" value="BeiJing">
+                                <label for="BeiJing"><span ></span>北京</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="city" id="ShangHai" value="ShangHai">
+                                <label for="ShangHai"><span ></span>上海</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="city" id="ShenZhen" value="ShenZhen">
+                                <label for="ShenZhen"><span ></span>深圳</label>
+                            </li>
+                            <li>
+                                <input type="radio" name="city" id="NewYork" value="NewYork">
+                                <label for="NewYork"><span ></span>纽约</label>
+                            </li>
+                              
+                        </ul>
+                    </div>
+                </fieldset>
+
+                <fieldset class="btn-container">
+                    <input class="search-btn" type="button" value="搜索">
+                </fieldset>
+             </form>
+             <div class="activity-show">
+                 <figure class="bj-act">
+                     <img src="beijing_act.png">
+                     <figcaption><span>北京活动</span><span>新社区大联盟</span></figcaption>
+                 </figure>
+                  <figure class="sh-act">
+                     <figcaption><span>上海活动</span><span>夜上海新景观探索</span></figcaption>
+                     <img src="shanghai_act.png">
+                     
+                 </figure>
+                  <figure class="sz-act">
+                     <img src="shenzhen_act.png">
+                     <figcaption><span>深圳活动</span><span>全新海岸线观点站</span></figcaption>
+                 </figure>
+                  <figure class="hk-act">
+                     <img src="hongkong_act.png">
+                     <figcaption><span>香港活动</span><span>奢侈消费大派送</span></figcaption>
+                 </figure>
+             </div>
+         </div>
+     </div>
+     <div class="project-intro">
+        <div class="left-img">
+            <!--  <img src="socks.png" alt=""> -->
+            <span class="text1">新世界</span>
+            <span class="text2">TIME</span>
+            <span class="text3">@新世界 - 北京</span>
+            <span class="text4">2016.04.01</span>
+            <!-- <div class="trangle-left"></div> -->
+        </div>
+        <div class="intro-text">
+            <h1>新世界/<span class="red-text">01</span></h1>
+            <p>新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界新世界是个新世界</p>
+            <div class="more">更多详情</div>
+            <div class="dot"><span class="left"></span><span class="middle"></span><span class="right"></span></div>
+        </div>
+     </div>
+    <div class="about-us">
+        <div class="left">
+            <div>新时代<br>关于爱生活的我们</div>
+            <div class="line"></div>
+            <div><span>查看更多</span></div>
+        </div>
+        <div class="middle">
+            <div>新时代<br>关于爱生活的我们</div>
+            <div class="line"></div>
+            <div><span>查看更多</span></div>
+        </div>
+        <div class="img-girl"></div>
+    </div>
+    <div class="join-us">
+        <div class="join-slogan">
+            <div >成为我们的志愿者</div>
+            <div class="line"></div>
+            <div >新世界的大家庭需要每一个爱生活的人的加入，如果你够年轻，有梦想，有激情<br>那就不要犹豫，快来加入我们，成为改变所有人生活的人</div>
+        </div>
+        <div class="provision">
+            <div>
+                <h1>新世界志愿者协议</h1>
+                <p>加入新世界志愿者的人员必须遵守中华人民共和国的相关法律法规，并且本着平等自愿的原则......</p>
+                <div class="more">more</div>
+            </div>
+            <div>
+                <h1>新世界志愿者权利</h1>
+                <p>新世界志愿者享受新世界内部所有资源共享的权利，并且享受所在市新世界活动的优先参与资格......</p>
+                <div class="more">more</div>
+            </div>
+            <div>
+                <h1>更多条款</h1>
+                <div class="more">more</div>
+            </div>
+        </div>
+       
+        <form>
+            <input type="text" id="name" placeholder="姓名：" name="">
+            <input type="text" id="age" placeholder="年龄：" name="">
+            <input type="text" id="contact" placeholder="联系方式：" name="">
+            <input type="text" id="address" placeholder="联系地址：" name="">
+            <textarea id="describe" ">请简单描述您梦想的生活：</textarea>
+            <input type="submit" id="submit" name="" value="提交申请">
+        </form>
+    </div>
+    <div class="contact-us">
+        <div>联系我们</div>
+        <div class="text">为了更好的获取我们最新的产品资讯，您可以留下您的电子邮箱快速订阅我们的产品资讯<br>也可以通过以下任何方式关注我们的动态</div>
+        <form>
+             <input type="email" class="email" name="" placeholder="someone@email.com">
+            <input type="submit" class="submit" name="" value="提交">
+        </form>
+       
+        <div >
+            <div class="qq"></div>
+            <div class="weibo"></div>
+            <div class="twitter"></div>
+            <div class="tianya"></div>
+        </div>
+    </div>
+    <div class="foot">
+        <div class="copy-right">@2016新世界</div>
+        <div class="top"><a href="#top">Back to top</a></div>
+    </div>
+
+</div>
+
+</body>
+</html>
