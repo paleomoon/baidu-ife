@@ -582,7 +582,7 @@ header .login a {
     line-height: 24px;
     text-align: center;
 }
-.calendar .jump span:after {
+.calendar .jump span:not(:last-child):after {
     content: "";
     display: inline-block;
     margin-left: 6px;
