@@ -43,4 +43,4 @@
 - 任务九：使用HTML/CSS实现一个复杂页面
 
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/XiaoweiSchool/task9)
-    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task8/task9.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task9/task9.html)
