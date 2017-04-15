@@ -5,13 +5,53 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>任务十：Flexbox 布局练习</title>
-    <link rel="stylesheet" href="task10.css">
     <link rel="shortcut icon" href="http://omcbb8o2a.bkt.clouddn.com/logo.jpg">
+    <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    body div {
+        box-sizing: border-box;
+        width: 150px;
+        margin: 20px;
+    }
+    div:nth-child(1) {
+        height: 120px;
+        border: 1px solid #f00;
+    }
+    div:nth-child(2) {
+        height: 100px;
+        border: 1px solid #f00;
+    }
+    div:nth-child(3) {
+        height: 40px;
+        border: 1px solid #f00;
+    }
+    div:nth-child(4) {
+        height: 200px;
+        border: 1px solid #0f0;
+    }
+    @media all and (max-width: 640px) {
+        body {
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        div:nth-child(4) {
+            order: -1;
+        }
+    }
+    </style>
 </head>
 <body>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
 </body>
 </html>
