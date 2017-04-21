@@ -1,0 +1,213 @@
+html {font-size:10px}
+@media screen and (min-width:321px) and (max-width:375px){html{font-size:11px}}
+@media screen and (min-width:376px) and (max-width:414px){html{font-size:12px}}
+@media screen and (min-width:415px) and (max-width:639px){html{font-size:15px}}
+@media screen and (min-width:640px) and (max-width:719px){html{font-size:20px}}
+@media screen and (min-width:720px) and (max-width:749px){html{font-size:22.5px}}
+@media screen and (min-width:750px) and (max-width:799px){html{font-size:23.5px}}
+@media screen and (min-width:800px){html{font-size:25px}}
+
+body,
+header h1,
+nav ul {
+    padding: 0;
+    margin: 0;
+}
+body {
+    min-width: 321px;
+}
+header {
+    width: 100%;
+    height: 4.5rem;
+    line-height: 4.5rem;
+    text-align: center;
+    color: #fff;
+    background-color: #91d4da;
+}
+header > span {
+    position: absolute; 
+    left: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
+header .icon-back {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.8rem;
+    margin-right: .5rem;
+    background: url(http://omcbb8o2a.bkt.clouddn.com/image/baidu-ife/XiaoweiSchool/task11/back.png) no-repeat 0 0 ;
+    background-size: 1.2rem 1.8rem;
+}
+header h1 {
+    font-family: "SimHei", sans-serif;
+    font-size: 2rem;
+}
+nav ul {
+    height: 4rem;
+    list-style: none;
+    font-size: 0;
+    -webkit-text-size-adjust:none;
+}
+nav ul li {
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+nav a {
+    display: block;
+    width: 100%;
+    height: 3rem;
+    text-decoration: none;
+    color: #666;
+}
+nav li:hover {
+    border-bottom: .4rem solid #91d4da;
+}
+.main-img {
+    width: 100%;
+    min-height: 186.7px;
+}
+.main-img img {
+    width: 100%;
+
+}
+.tags {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
+.tags div {
+    width: 20%;
+    min-height: 10rem;
+    flex: auto;
+    text-align: center;
+}
+.tags div span {
+    display: inline-block;
+    width: 5.2rem;
+    height: 5.3rem;
+    background: url(http://omcbb8o2a.bkt.clouddn.com/image/baidu-ife/XiaoweiSchool/task11/tags.png) no-repeat 0 0/100% 100%;
+}
+.column {
+    display: flex;
+    justify-content: space-around;
+    width: 96%;
+    margin: 0 auto 2rem;
+    border-top: 2px solid #ccc;
+}
+.column img {
+    width: 100%;
+    min-height: 9.6rem;
+    height: 10.6rem;
+}
+.column div {
+    width: 33%;
+    margin-top: 1rem;
+}
+.column div + div {
+    border-left: 2px solid #ccc;
+}
+.column img + span {
+    display: block;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.column span + span {
+    display: block;
+    color: #666;
+    text-align: center;
+}
+.module {
+    overflow: hidden;
+    background-color: #f8f8f8;
+}
+.module h3 {
+    text-indent: 1rem;
+}
+.module [class*="module-"] {
+    margin-top: 1rem;
+    /*padding-left: 1rem;
+    padding-right: 1rem;*/
+    overflow: hidden;
+    background-color: #fff;
+}
+[class*="module-"] > div {
+    width: 100%;
+    height: 12rem;
+    border-top: 2px solid #f8f8f8;
+    /*margin: .5rem;*/
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+[class*="module-"] img {
+    flex: 2 1 auto;
+    height: 4rem;
+    width: 16%;
+    border: 2px solid #ffc256;
+    margin: .5rem;
+}
+[class*="module-"] span {
+    display: inline-block;
+    flex: 1 1 auto;
+    width: 36%;
+    height: 2rem;
+    margin: .5rem;
+    line-height: 2rem;
+    text-align: center;
+    background-color: #f8f8f8;
+}
+.article {
+    overflow: hidden;
+    background-color: #fff;
+    border-top: 1rem solid #f8f8f8;
+}
+.article article {
+    position: relative;
+    padding: 1rem;
+    border-bottom: 4px solid #f8f8f8;
+}
+.article img {
+    height: 5rem;
+    width: 20%;
+}
+.article-1 h1,
+.article-2 h1 {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: calc(20% + 1rem);
+    margin: 0;
+    font-weight: normal;
+    color: #666;
+}
+.article-1 span,
+.article-2 span {
+    display: block;
+    position: absolute;
+    left: calc(20% + 1rem);
+    bottom: 1.2rem;
+    color: #ddd;
+}
+.article-3 h1 {
+    display: block;
+    margin-top: 0;
+    font-weight: normal;
+    color: #666;
+}
+.article-3 span {
+    display: block;
+    color: #ddd;
+}
+footer {
+    height: 4rem;
+    background-color: #f8f8f8;
+}
