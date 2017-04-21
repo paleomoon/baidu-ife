@@ -47,4 +47,8 @@
 
 - 任务十：Flexbox 布局练习
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/XiaoweiSchool/task10)
-    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task10/task10.html) 
+    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task10/task10.html)  
+
+- 任务十一：移动Web页面布局实践
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/XiaoweiSchool/task11)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task11/task11.html) 
