@@ -51,4 +51,13 @@
 
 - 任务十一：移动Web页面布局实践
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/XiaoweiSchool/task11)
-    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task11/task11.html) 
+    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task11/task11.html)  
+
+- 任务十二：学习CSS 3的新特性
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/XiaoweiSchool/task12/task12.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/XiaoweiSchool/task12/task12.html)  
+
+## 斌斌学院
+- 任务一：零基础JavaScript编码（一）
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task1/task1.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task1/task1.html)  
