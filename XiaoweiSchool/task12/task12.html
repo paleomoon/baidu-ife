@@ -5,100 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
     <title>任务十二：学习CSS 3的新特性</title>
-    <link rel="stylesheet" type="text/css" href="task12.css">
+    <link rel="stylesheet" type="text/css" href="slideshow.css">
     <link rel="shortcut icon" href="http://omcbb8o2a.bkt.clouddn.com/logo.jpg">
     <style>
-    body 
-    {
+    body {
         display: flex;
         flex-flow: column nowrap;
         justify-content: space-between;
         align-items: center;
         margin: 0;
         padding: 0;
-        }   
-    table th
-    {
+    }   
+    table th {
         background: #000;
         color: #fff;    
-        }
-    table tbody tr:nth-child(2n) 
-    {
+    }
+    table tbody tr:nth-child(2n) {
         background: #ccc;
-        }
+    }
     tbody tr:nth-child(1),
     tbody tr:nth-child(2),
-    tbody tr:nth-child(3) 
-    {
+    tbody tr:nth-child(3) {
         color: #f00;
-        }
-    .input-box 
-    {
+    }
+    .input-box {
         width: 200px;
         height: 80px;
         margin-top: 40px;
         text-align: center;
-        }
-    input 
-    {
+    }
+    input {
         width: 90px;
-        }
-    input:focus 
-    {
+    }
+    input:focus {
         width: 180px;
         border: none;
         box-shadow: 0 0 4px 4px #ddd;
         transition: width .5s;
-        }
-    .container 
-    {
-        /*display: flex;
-        justify-content: flex-end;
-        align-items: flex-end;*/
-        width: 600px;
-        height: 400px;
-        margin-top: 40px;
-        overflow: auto;
-        background: #0f0;
-        }
-     .container [class^="div"] 
-     {
-         float: right;
-         margin-top: 360px;
-         display: inline-block;
-         width: 40px;
-         height: 40px;
-         margin-left: 6px;
-         line-height: 40px;
-         text-align: center;
-         color: #fff;
-         font-weight: bold;
-         background: #040;
-         }
-     .container .grow-box 
-     {
-         width: 0;
-         height: 100%;
-         background: #00f;
-         animation: my-animation 3s infinite alternate;
-         -webkit-animation: my-animation 3s infinite alternate;
-         }
-     .container:hover .grow-box 
-     {
-         animation-play-state: paused;
-         -webkit-animation-play-state: paused;
-         }
-     @keyframes my-animation 
-     {
-         0% {width: 0;}
-         100% {width: 100%;}
-         }
-     @-webkit-keyframes my-animation 
-     {
-         0% {width: 0;}
-         100% {width: 100%;}
-         }
-     
+    }
     </style>
 </head>
 <body>
@@ -164,13 +108,22 @@
         </tbody>      
 	</table>
     <div class="input-box">
-        <input type=text >
+        <input type=text />
     </div>
     <div class="container">
-        <div class="div1">3</div>
-        <div class="div2">2</div>
-        <div class="div3">1</div>
-        <div class="grow-box"></div>
+        <a href="#content1" class="play-nav">1</a>
+        <a href="#content2" class="play-nav">2</a>
+        <a href="#content3" class="play-nav">3</a>
+        <div class="show-content">
+            <div id="content1"></div>
+            <div id="content2"></div>
+            <div id="content3"></div>
+            <ul class="title">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

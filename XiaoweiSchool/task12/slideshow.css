@@ -1,0 +1,100 @@
+.container 
+    {
+        position: relative;
+        width: 600px;
+        height: 400px;
+        overflow: hidden;
+        background: #222;
+    }
+    .play-nav 
+    {
+         position: absolute;
+         top: 360px;
+         right: 0;
+         display: inline-block;
+         width: 40px;
+         height: 40px;
+         text-decoration: none;
+         line-height: 40px;
+         text-align: center;
+         color: #fff;
+         font-weight: bold;
+         background: #666;
+         z-index: 3;
+    }
+    .play-nav:hover {
+        background: #ccc;
+    }
+    .play-nav:nth-child(1) {
+        margin-right: 92px;
+    }
+    .play-nav:nth-child(2) {
+        margin-right: 46px;
+    }
+    .show-content {
+        width: 300%;
+        height: 100%;
+        animation: anima 11s ease-out infinite alternate;
+        -webkit-animation: anima 11s ease-out infinite alternate;
+    }
+    .show-content > div {
+        display: inline-block;
+        float: left;
+        width: 600px;
+        height: 400px;
+    }
+    .show-content #content1 {
+        background: #f00;
+    }
+    .show-content #content2 {
+        background: #0f0;
+    }
+    .show-content #content3 {
+        background: #00f;
+    }
+    .show-content:hover,
+    .play-nav:hover {
+         animation-play-state: paused;
+         -webkit-animation-play-state: paused;
+    }
+    .play-nav:nth-child(1):hover ~ .show-content {
+        animation: ani1 .5s ease-out forwards;
+    }
+    .play-nav:nth-child(2):hover ~ .show-content {
+        animation: ani2 .5s ease-out forwards;
+    }
+    .play-nav:nth-child(3):hover ~ .show-content {
+        animation: ani3 .5s ease-out forwards;
+    }
+     @keyframes anima {
+         0%,27% {transform: translateX(0);}
+         36%,63% {transform: translateX(-600px);}
+         72%,100% {transform: translateX(-1200px);}
+    }
+     @-webkit-keyframes anima {
+         0%,27% {transform: translateX(0);}
+         36%,63% {transform: translateX(-600px);}
+         72%,100% {transform: translateX(-1200px);}
+    }
+    @keyframes ani1 {
+        0%  {transform: translateX(-1200px);}
+        100% {transform: translateX(0);}
+    }
+    @keyframes ani2 {
+        100% {transform: translateX(-600px);}
+    }
+    @keyframes ani3 {
+        100% {transform: translateX(-1200px);}
+    }
+    .show-content .title {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+    }
+    .show-content .title li {
+        display: inline-block;
+        float: left;
+        width: 600px;
+        height: 20px;
+        text-align:center;
+    }
