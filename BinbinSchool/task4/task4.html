@@ -1,0 +1,93 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务四：基础JavaScript练习（一）</title>
+        <style type="text/css">
+            .queue-element 
+            {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                margin: 6px 6px 6px 0;
+                line-height: 30px;
+                text-align: center;
+                background: red;
+                color: #fff;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+<body>
+    <input id="input-num" type="text" name="name"/>
+    <input id="left-in" type="button" name="name" value="左侧入" />
+    <input id="right-in" type="button" name="name" value="右侧入" />
+    <input id="left-out" type="button" name="name" value="左侧出" />
+    <input id="right-out" type="button" name="name" value="右侧出" />
+    <div id="queue">
+    </div>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+        /**
+        * addElement
+        * 添加元素
+        */
+        var addElement = function (event) {
+            //获取事件触发对象
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+
+            //验证输入是否是非数字或空
+            var inputText = document.getElementById("input-num").value;
+            if (isNaN(inputText) || !inputText) {
+                alert("请输入数字！");
+                return;
+            }
+            var queueBox = document.getElementById("queue");
+            var newElement = document.createElement("span");
+            newElement.innerText = inputText;
+            newElement.className = "queue-element";
+
+            if (target.id === "left-in") {
+                queueBox.insertBefore(newElement, queueBox.firstChild);
+            }
+            else if (target.id === "right-in") {
+                queueBox.appendChild(newElement);
+            }
+
+            EventUtil.addHandler(newElement, "click", removeElement);
+        };
+        /**
+        * removeElement
+        * 移除元素
+        */
+        var removeElement = function (event) {
+            var queueBox = document.getElementById("queue");
+            if (!queueBox.children.length) {
+                return;
+            }
+
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            
+            var ele;
+            if (target.id === "left-out") {
+                ele = queueBox.firstChild;
+            }
+            else if (target.id === "right-out") {
+                ele = queueBox.lastChild;
+            }
+            else if (target.className === "queue-element") {
+                ele = target;
+            }
+            //移除元素之前先移除事件处理程序
+            EventUtil.removeHandler(ele, "click", removeElement);
+            queueBox.removeChild(ele);
+        };
+        EventUtil.addHandler(document.getElementById("left-in"), "click", addElement);
+        EventUtil.addHandler(document.getElementById("right-in"), "click", addElement);
+        EventUtil.addHandler(document.getElementById("left-out"), "click", removeElement);
+        EventUtil.addHandler(document.getElementById("right-out"), "click", removeElement);
+    </script>
+</body>
+</html>
