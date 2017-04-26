@@ -65,3 +65,7 @@
 - 任务二：零基础JavaScript编码（二）
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task2/task2.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task2/task2.html)  
+
+- 任务三：零基础JavaScript编码（三）
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task3/task3.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task3/task3.html)  
