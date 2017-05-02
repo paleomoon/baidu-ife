@@ -1,0 +1,147 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务五：基础JavaScript练习（二）</title>
+        <style type="text/css">
+            #queue {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-end;
+                height: 100px;
+                margin-top: 10px;
+            }
+            .queue-element 
+            {
+                width: 30px;
+                margin-right: 10px;                
+                color: #fff;
+                background-color: #f00;
+                cursor: pointer;
+                transition: height .5s;
+            }
+        </style>
+    </head>
+<body>
+    <input id="input-num" type="text" name="name"/>
+    <input id="left-in" type="button" name="name" value="左侧入" />
+    <input id="right-in" type="button" name="name" value="右侧入" />
+    <input id="left-out" type="button" name="name" value="左侧出" />
+    <input id="right-out" type="button" name="name" value="右侧出" />
+    <input id="bubble-sort" type="button" name="name" value="冒泡排序" />
+    <div id="queue">
+    </div>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+        /**
+        * addElement
+        * 添加元素
+        */
+        var addElement = function (event) {
+            //验证输入是否是非数字或空
+            var inputText = document.getElementById("input-num").value;
+            if (isNaN(inputText) || !inputText
+                || +inputText < 10 || +inputText > 100) {
+                alert("请输入10-100的数字！");
+                return;
+            }
+
+            var queueBox = document.getElementById("queue");
+            if (queueBox.children.length > 60) {
+                alert("元素已超过60个！");
+                return;
+            }
+
+            //获取事件触发对象
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+
+            var newElement = document.createElement("span");
+            newElement.style.height = inputText + 'px';
+            newElement.className = "queue-element";
+
+            if (target.id === "left-in") {
+                queueBox.insertBefore(newElement, queueBox.firstChild);
+            }
+            else if (target.id === "right-in") {
+                queueBox.appendChild(newElement);
+            }
+
+            EventUtil.addHandler(newElement, "click", removeElement);
+        };
+        /**
+        * removeElement
+        * 移除元素
+        */
+        var removeElement = function (event) {
+            var queueBox = document.getElementById("queue");
+            if (!queueBox.children.length) {
+                return;
+            }
+
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            
+            var ele;
+            if (target.id === "left-out") {
+                ele = queueBox.firstChild;
+            }
+            else if (target.id === "right-out") {
+                ele = queueBox.lastChild;
+            }
+            else if (target.className === "queue-element") {
+                ele = target;
+            }
+            //移除元素之前先移除事件处理程序
+            EventUtil.removeHandler(ele, "click", removeElement);
+            queueBox.removeChild(ele);
+        };
+        EventUtil.addHandler(document.getElementById("left-in"), "click", addElement);
+        EventUtil.addHandler(document.getElementById("right-in"), "click", addElement);
+        EventUtil.addHandler(document.getElementById("left-out"), "click", removeElement);
+        EventUtil.addHandler(document.getElementById("right-out"), "click", removeElement);
+
+        EventUtil.addHandler(document.getElementById("bubble-sort"), "click", bubbleSort);
+
+        /**
+        * bubbleSort
+        * 冒泡排序可视化
+        */
+        function bubbleSort() {
+            var i = 0, j = 0;
+            var ele = document.getElementById("queue").children;
+            var len = ele.length;
+            var tempj = 0;
+            var timer = setInterval(function () {
+                if (i < len) {
+                    if (j < len - i -1) {
+                        ele[tempj].style.backgroundColor = "#f00";//恢复原来红色
+                        //两者比较 绿色
+                        ele[j].style.backgroundColor = "#0f0";
+                        ele[j+1].style.backgroundColor = "#0f0";
+                        tempj = j;
+                        var value1 = ele[j].style.height;
+                        var value2 = ele[j+1].style.height;
+                        if (parseInt(value1) > parseInt(value2)) {//像素值转数值比较大小
+                            var temp = value1;
+                            ele[j].style.height = value2;
+                            ele[j+1].style.height = temp;
+                        }
+                        j++;
+                    }
+                    else {
+                        j = 0;
+                        i++;
+                        ele[tempj].style.backgroundColor = "#f00";
+                        ele[len-i].style.backgroundColor = "#00f";//完成排序 蓝色
+                    }
+                }
+                else {
+                    clearInterval(timer);
+                }
+            }, 600);
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务六：基础JavaScript练习（三）</title>
+        <style type="text/css">
+            .queue-element 
+            {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                margin: 6px 6px 6px 0;
+                line-height: 30px;
+                text-align: center;
+                background: red;
+                color: #fff;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+<body>
+	<textarea id="input-text"></textarea>
+    <input id="left-in" type="button" name="name" value="左侧入" />
+    <input id="right-in" type="button" name="name" value="右侧入" />
+    <input id="left-out" type="button" name="name" value="左侧出" />
+    <input id="right-out" type="button" name="name" value="右侧出" />
+    <input id="search-text" type="text" placeholder="请输入查询内容"/>
+    <input id="search" type="button" value="查询" />
+    <div id="queue">
+    </div>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+
+        var textArray = '';//输入的字符串数组
+        /**
+        * addElement
+        * 添加元素
+        */
+        var addElement = function (event) {
+            //获取事件触发对象
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+
+            //验证输入是否是非数字或空
+            var inputText = document.getElementById("input-text").value;
+            if (!inputText) {
+                return;
+            }
+            textArray = inputText.split(/[\n\s,，、]+/);
+            var queueBox = document.getElementById("queue");
+            for (var i = 0, len = textArray.length; i < len; i++) {  
+                var newElement = document.createElement("span");
+                newElement.innerText = textArray[i];
+                newElement.className = "queue-element";
+
+                if (target.id === "left-in") {
+                    queueBox.insertBefore(newElement, queueBox.firstChild);
+                }
+                else if (target.id === "right-in") {
+                    queueBox.appendChild(newElement);
+                }
+
+                EventUtil.addHandler(newElement, "click", removeElement);
+            }
+            
+        };
+        /**
+        * removeElement
+        * 移除元素
+        */
+        var removeElement = function (event) {
+            var queueBox = document.getElementById("queue");
+            if (!queueBox.children.length) {
+                return;
+            }
+            event = EventUtil.getEvent(event);
+            var target = EventUtil.getTarget(event);
+            var ele;
+            if (target.id === "left-out") {
+                ele = queueBox.firstChild;
+            }
+            else if (target.id === "right-out") {
+                ele = queueBox.lastChild;
+            }
+            else if (target.className === "queue-element") {
+                ele = target;
+            }
+            //移除元素之前先移除事件处理程序
+            EventUtil.removeHandler(ele, "click", removeElement);
+            queueBox.removeChild(ele);
+        };
+
+        /**
+        * match
+        * 模糊匹配
+        */
+        var match = function () {
+            var searchStr = document.getElementById("search-text").value;
+            var ele = document.getElementById("queue").children;
+            for (var i = 0, len = ele.length; i < len; i++) {
+                ele[i].style.color = '#fff';
+                var re = new RegExp(searchStr, 'g');
+                if (re.test(ele[i].innerText)) {
+                    ele[i].style.color = '#00f';
+                }
+            }
+        };
+
+        EventUtil.addHandler(document.getElementById("left-in"), "click", addElement);
+        EventUtil.addHandler(document.getElementById("right-in"), "click", addElement);
+        EventUtil.addHandler(document.getElementById("left-out"), "click", removeElement);
+        EventUtil.addHandler(document.getElementById("right-out"), "click", removeElement);
+        EventUtil.addHandler(document.getElementById("search"), "click", match);
+        
+    </script>
+</body>
+</html>

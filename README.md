@@ -73,3 +73,11 @@
 - 任务四：基础JavaScript练习（一）
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task4/task4.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task4/task4.html)  
+
+- 任务五：基础JavaScript练习（二）
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task5/task5.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task5/task5.html)  
+
+- 任务六：基础JavaScript练习（三）
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task6/task6.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task6/task6.html)  
