@@ -1,0 +1,146 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务七：JavaScript和树（一）</title>
+        <style type="text/css">
+        div 
+        {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid #000;
+            background-color: #fff; 
+            }
+         .level1 
+         {
+             width: 800px;
+             height: 200px;
+             }
+          .level2 
+          {
+              width: 350px;
+              height: 150px;
+              
+              }
+          .level3 
+          {
+              width: 150px;
+              height: 100px;
+              
+              }
+          .level4 
+          {
+              width: 50px;
+              height: 50px;
+              
+              }
+        </style>
+    </head>
+<body>
+	<div class="level1" id="root">
+        <div class="level2">
+            <div class="level3">
+                <div class="level4">
+                </div>
+                <div class="level4">
+                </div>
+            </div>
+            <div class="level3">
+                <div class="level4">
+                </div>
+                <div class="level4">
+                </div>
+            </div>
+        </div>
+        <div class="level2">
+            <div class="level3">
+                <div class="level4">
+                </div>
+                <div class="level4">
+                </div>
+            </div>
+            <div class="level3">
+                <div class="level4">
+                </div>
+                <div class="level4">
+                </div>
+            </div>
+        </div>
+    </div>
+    <input id="DLR" type="button" name="name" value="前序遍历" />
+    <input id="LDR" type="button" name="name" value="中序遍历" />
+    <input id="LRD" type="button" name="name" value="后序遍历" />
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+    var nodeList = [];
+    var rootNode = document.getElementById("root");
+    /**
+    *preOrder
+    *前序遍历
+    */
+    function preOrder(node) {
+        if (node) {
+            nodeList.push(node);
+            preOrder(node.children[0]);
+            preOrder(node.children[1]);
+        }
+    }
+    /**
+    *inOrder
+    *中序遍历
+    */
+    function inOrder(node) {
+        if (node) {
+            inOrder(node.children[0]);
+            nodeList.push(node);
+            inOrder(node.children[1]);
+        }
+    }
+    /**
+    *postOrder
+    *后序遍历
+    */
+    function postOrder(node) {
+        if (node) {
+            postOrder(node.children[0]);
+            postOrder(node.children[1]);
+            nodeList.push(node);
+        }
+    }
+    function show() {
+        var i = 0;
+        var timer = setInterval(function () {
+            if (i < nodeList.length) {
+                if (i - 1 >= 0) {
+                    nodeList[i - 1].style.backgroundColor = '#fff';
+                }
+                nodeList[i++].style.backgroundColor = '#00f';
+            }
+            else {
+                clearInterval(timer);
+                nodeList[i - 1].style.backgroundColor = '#fff';
+            }
+        }, 500);
+    }
+    function preOrderShow() {
+        nodeList = [];
+        preOrder(rootNode);
+        show();
+    }
+    function inOrderShow() {
+        nodeList = [];
+        inOrder(rootNode);
+        show();
+    }
+    function postOrderShow() {
+        nodeList = [];
+        postOrder(rootNode);
+        show();
+    }
+    EventUtil.addHandler(document.getElementById("DLR"), "click", preOrderShow);
+    EventUtil.addHandler(document.getElementById("LDR"), "click", inOrderShow);
+    EventUtil.addHandler(document.getElementById("LRD"), "click", postOrderShow);
+    </script>
+</body>
+</html>

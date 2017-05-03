@@ -1,0 +1,183 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务八：JavaScript和树（二）</title>
+        <style type="text/css">
+        .box div {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border: 1px solid #000;
+            background-color: #fff; 
+            margin: 5px;
+        }
+        .level1 {
+             width: 1100px;
+             height: 200px;
+        }
+        .level2 {
+              height: 150px;
+        }
+        .level3 {
+              height: 100px;
+        }
+        .level4 {
+              height: 50px;
+        }
+        </style>
+    </head>
+<body>
+    <input id="DFT" type="button" name="name" value="深度优先遍历" />
+    <input id="BFT" type="button" name="name" value="广度优先遍历" />
+    <input id="search-text" type="text" name="name" placeholder="请输入查询内容" />
+    <input id="DF-search" type="button" name="name" value="深度优先搜索" />
+    <input id="BF-search" type="button" name="name" value="广度优先搜索" />
+    <div class="box">
+	<div class="level1" id="root">super
+        <div class="level2">cat
+            <div class="level3">apple
+                <div class="level4">pear
+                </div>
+                <div class="level4">pig
+                </div>
+                <div class="level4">cup
+                </div>
+            </div>
+            <div class="level3">phone
+            </div>
+            <div class="level3">human
+                <div class="level4">book
+                </div>
+                <div class="level4">school
+                </div>
+            </div>
+        </div>
+        <div class="level2">note
+            <div class="level3">human
+                <div class="level4">code
+                </div>
+                <div class="level4">man
+                </div>
+                 <div class="level4">pen
+                </div>
+            </div>
+            <div class="level3">program
+                <div class="level4">pointer
+                    <div class="level5">function
+                    </div>
+                </div>
+                <div class="level4">glass
+                </div>
+            </div>
+        </div>
+        <div class="level2">fish
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+    var nodeList = [];
+    var rootNode = document.getElementById("root");
+    var BFindex = 0;//广度优先遍历自增标识符
+    var found = false;
+    var foundNode = [];
+    /**
+    *traverseDF
+    *深度优先遍历
+    */
+    function traverseDF(node) {
+        if (node) {
+            nodeList.push(node);
+            var child = node.children;
+            for (var i = 0, len = child.length; i < len; i++) {
+                traverseDF(child[i]);
+            }
+        }
+    }
+    /**
+    *traverseBF
+    *广度优先遍历
+    */
+    function traverseBF(node) {
+        if (node) {
+            nodeList.push(node);
+            traverseBF(node.nextElementSibling);
+            node = nodeList[BFindex++];
+            traverseBF(node.firstElementChild);
+        }
+    }
+    /**
+    *show
+    *动画展示
+    */
+    function show(searchText) {
+        var i = 0;
+        var timer = setInterval(function () {
+            if (i < nodeList.length) {
+                if (i - 1 >= 0) {
+                    nodeList[i - 1].style.backgroundColor = '#fff';
+                }
+                nodeList[i].style.backgroundColor = '#00f';
+                if (searchText &&　searchText == nodeList[i].firstChild.nodeValue.replace(/(^\s*)|(\s*$)/g, "")) {//获取元素本身的文本内容
+                    nodeList[i].style.backgroundColor = '#f00';
+                    foundNode.push(nodeList[i]);
+                    found = true;
+                }
+                i++;
+            }
+            else {
+                clearInterval(timer);
+                nodeList[i - 1].style.backgroundColor = '#fff';
+                foundStyle('found');
+                if (searchText && !found) {
+                    alert("未找到查询内容！");
+                }
+            }
+        }, 200);
+    }
+    function foundStyle (state) {
+        for (var i = 0, len = foundNode.length; i < len; i++) {
+            if (state == 'found') {
+                foundNode[i].style.backgroundColor = '#f00';
+            }
+            else if (state == 'reset') {
+                foundNode[i].style.backgroundColor = '#fff';
+            }
+            
+        }
+        
+    }
+    function DFTShow(searchText) {
+        nodeList = [];
+        foundStyle('reset');
+        foundNode = [];
+        traverseDF(rootNode);
+        show(searchText);
+    }
+    function BFTShow(searchText) {
+        BFindex = 0;
+        nodeList = [];
+        foundStyle('reset');
+        foundNode = [];
+        traverseBF(rootNode);
+        show(searchText);
+    }
+
+    EventUtil.addHandler(document.getElementById("DFT"), "click", function () {
+        DFTShow('');
+    });
+    EventUtil.addHandler(document.getElementById("BFT"), "click", function () {
+        BFTShow('');
+    });
+    EventUtil.addHandler(document.getElementById("DF-search"), "click", function () {
+        var searchText = document.getElementById("search-text").value;
+        DFTShow(searchText);
+    });
+    EventUtil.addHandler(document.getElementById("BF-search"), "click", function () {
+        var searchText = document.getElementById("search-text").value;
+        BFTShow(searchText);
+    });
+    </script>
+</body>
+</html>
