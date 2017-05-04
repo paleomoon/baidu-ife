@@ -89,3 +89,7 @@
 - 任务八：JavaScript和树（二）
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task8/task8.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task8/task8.html)  
+
+- 任务九：JavaScript和树（三）
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task9/task9.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task9/task9.html)  

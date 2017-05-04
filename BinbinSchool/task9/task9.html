@@ -2,10 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>任务八：JavaScript和树（二）</title>
+        <title>任务九：JavaScript和树（三）</title>
         <style type="text/css">
         .box div {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
             align-items: center;
             border: 1px solid #000;
@@ -14,16 +15,16 @@
         }
         .level1 {
              width: 1100px;
-             height: 200px;
+             min-height: 200px;
         }
         .level2 {
-              height: 150px;
+              min-height: 150px;
         }
         .level3 {
-              height: 100px;
+              min-height: 100px;
         }
         .level4 {
-              height: 50px;
+              min-height: 50px;
         }
         </style>
     </head>
@@ -33,6 +34,9 @@
     <input id="search-text" type="text" name="name" placeholder="请输入查询内容" />
     <input id="DF-search" type="button" name="name" value="深度优先搜索" />
     <input id="BF-search" type="button" name="name" value="广度优先搜索" />
+    <input id="delete" type="button" name="name" value="删除" />
+    <input id="append-text" type="text" name="name" />
+    <input id="append" type="button" name="name" value="添加" />
     <div class="box">
 	<div class="level1" id="root">super
         <div class="level2">cat
@@ -82,16 +86,18 @@
     var BFindex = 0;//广度优先遍历自增标识符
     var found = false;
     var foundNode = [];
+    var tempNode = null;
+    var selectedNode = [];
     /**
     *traverseDF
     *深度优先遍历
     */
-    function traverseDF(node) {
+    function traverseDF(node, list) {
         if (node) {
-            nodeList.push(node);
+            list.push(node);
             var child = node.children;
             for (var i = 0, len = child.length; i < len; i++) {
-                traverseDF(child[i]);
+                traverseDF(child[i], list);
             }
         }
     }
@@ -99,12 +105,12 @@
     *traverseBF
     *广度优先遍历
     */
-    function traverseBF(node) {
+    function traverseBF(node, list) {
         if (node) {
-            nodeList.push(node);
-            traverseBF(node.nextElementSibling);
+            list.push(node);
+            traverseBF(node.nextElementSibling, list);
             node = nodeList[BFindex++];
-            traverseBF(node.firstElementChild);
+            traverseBF(node.firstElementChild, list);
         }
     }
     /**
@@ -153,7 +159,7 @@
         nodeList = [];
         foundStyle('reset');
         foundNode = [];
-        traverseDF(rootNode);
+        traverseDF(rootNode, nodeList);
         show(searchText);
     }
     function BFTShow(searchText) {
@@ -161,7 +167,7 @@
         nodeList = [];
         foundStyle('reset');
         foundNode = [];
-        traverseBF(rootNode);
+        traverseBF(rootNode, nodeList);
         show(searchText);
     }
 
@@ -179,6 +185,59 @@
         var searchText = document.getElementById("search-text").value;
         BFTShow(searchText);
     });
+
+    (function bindEvent() {
+        nodeList = [];
+        traverseDF(rootNode, nodeList);
+        for (var i = 0, len = nodeList.length; i < len; i++) {
+            EventUtil.addHandler(nodeList[i], "click", clickNode);
+        }
+    })();
+    
+    function clickNode(event) {
+        event = EventUtil.getEvent(event);
+        var target = EventUtil.getTarget(event);
+        EventUtil.stopPropagation(event); //阻止事件冒泡
+        target.style.backgroundColor = '#0f0';
+        if (tempNode) {
+            tempNode.style.backgroundColor = '#fff';
+        }
+        tempNode = target;
+
+        selectedNode = [];
+        traverseDF(target, selectedNode); //获取选中的结点 包括子结点
+    }
+    EventUtil.addHandler(document.getElementById("delete"), "click", deleteNode);
+    function deleteNode() {
+        tempNode.parentNode.removeChild(tempNode); //删除本结点
+        //for (var i = 0, len = selectedNode.length; i < len; i++) {
+        //    nodeList.removeValue(selectedNode[i]); //从nodeList中移除
+        //}
+    }
+    
+    EventUtil.addHandler(document.getElementById("append"), "click", appendNode);
+    function appendNode() {
+        var appendText = document.getElementById("append-text").value;
+        var newNode = document.createElement("div");
+        newNode.innerText = appendText;
+        tempNode.appendChild(newNode);
+    }
+    /**
+    *移除数组中第一个匹配的元素，成功返回位置索引，失败返回-1
+    */
+    /*
+    Array.prototype.removeValue = function (val) {
+        var index = -1;
+        for (var i = 0, len = this.length; i < len; i++) {
+            if (this[i] === val) {
+                this.splice(i, 1);
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+    */
     </script>
 </body>
 </html>
