@@ -93,3 +93,8 @@
 - 任务九：JavaScript和树（三）
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/BinbinSchool/task9/task9.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/BinbinSchool/task9/task9.html)  
+
+## 耀耀学院
+- 任务一：表单（一）单个表单项的检验
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task1/task1.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task1/task1.html)  
