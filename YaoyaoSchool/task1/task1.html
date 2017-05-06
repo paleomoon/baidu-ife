@@ -1,0 +1,106 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务一：表单（一）单个表单项的检验</title>
+        <style type="text/css">
+        lable 
+        {
+            display: inline-block;
+            width: 120px;
+            height: 30px;
+            }
+        #input-name 
+        {
+            width: 320px;
+            height: 26px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            padding-left: 10px;
+            }
+        #check 
+        {
+            width: 60px;
+            height: 30px;
+            border-radius: 5px;
+            border: none;
+            background-color: #2f79ba;
+            color: #fff;
+            }
+        #alert-text 
+        {
+            color: #a8a8a8;
+            padding-left: 2.6em;
+            }
+        </style>
+    </head>
+<body>
+    <form action="">
+        <label>名称 <input id="input-name" name="name" type="text" /></label>
+        <input id="check" type="button" value="验证" />
+        <div id="alert-text">必填，长度为4~16个字符</div>
+    </form>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+
+        function validate() {
+            var input = document.getElementById("input-name");
+            var textDiv = document.getElementById("alert-text");
+            var inputText = input.value;
+            var len = getByteLen(inputText);
+            if (inputText == null || inputText == "") {
+                textDiv.innerText = "名称不能为空";
+                textDiv.style.color = '#f00';
+                input.style.border = '2px solid #f00';
+                return false;
+            }
+            else if (len < 4 || len > 16) {
+                textDiv.innerText = "长度必须为4~16个字符";
+                textDiv.style.color = '#f00';
+                input.style.border = '2px solid #f00';
+                return false;
+            }
+            else {
+                textDiv.innerText = "格式正确";
+                textDiv.style.color = '#0f0';
+                input.style.border = '2px solid #0f0';
+                return true;
+            }
+        }
+
+        /**
+        *获取字符串长度 中文2 英文1
+        */
+        function getByteLen(str) {
+            var len = 0;
+            for (var i = 0; i < str.length; i++) {
+                var a = str.charAt(i);
+                if (a.match(/[^\x00-\xff]/g)) {
+                    len += 2;
+                }
+                else {
+                    len++;
+                }
+            }
+            return len;
+        }
+        /*方法二
+        function getByteLen(str) {
+            var realLength = 0, len = str.length, charCode = -1;
+            for (var i = 0; i < len; i++) {
+                charCode = str.charCodeAt(i);
+                if (charCode >= 0 && charCode <= 128) {
+                    realLength++;
+                }
+                else {
+                    realLength += 2;
+                }
+            }
+            return realLength;
+        }
+        */
+        EventUtil.addHandler(document.getElementById("check"), "click", validate);
+    </script>
+</body>
+</html>
