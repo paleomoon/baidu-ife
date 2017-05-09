@@ -4,40 +4,37 @@
         <meta charset="utf-8">
         <title>任务一：表单（一）单个表单项的检验</title>
         <style type="text/css">
-        lable 
-        {
-            display: inline-block;
+        label {
             width: 120px;
             height: 30px;
-            }
-        #input-name 
-        {
+            font-size: 18px;
+        }
+        #input-name {
             width: 320px;
             height: 26px;
             border: 1px solid #ccc;
             border-radius: 5px;
             outline: none;
             padding-left: 10px;
-            }
-        #check 
-        {
+            margin-left: 10px;
+        }
+        #check {
             width: 60px;
             height: 30px;
             border-radius: 5px;
             border: none;
             background-color: #2f79ba;
             color: #fff;
-            }
-        #alert-text 
-        {
+        }
+        #alert-text {
             color: #a8a8a8;
-            padding-left: 2.6em;
-            }
+            padding-left: 3em;
+        }
         </style>
     </head>
 <body>
     <form action="">
-        <label>名称 <input id="input-name" name="name" type="text" /></label>
+        <label>名称<input id="input-name" name="name" type="text" /></label>
         <input id="check" type="button" value="验证" />
         <div id="alert-text">必填，长度为4~16个字符</div>
     </form>

@@ -1,0 +1,155 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务二：表单（二）多个表单项的动态校验</title>
+        <style type="text/css">
+        form {
+            display: inline-block;
+        }
+        label 
+        {
+            display: inline-block;
+            width: 120px;
+            height: 30px;
+            margin-right: 30px;
+            font-family: "SimHei";
+            font-size: 18px;
+            text-align: right;
+        }
+        .input-text {
+            width: 320px;
+            height: 26px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            padding-left: 10px;
+        }
+        #check {
+            float: right;
+            width: 60px;
+            height: 30px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            background-color: #2f79ba;
+            color: #fff;
+        }
+        .input-text + div {
+            height: 20px;
+            padding-left: 160px;
+            margin-bottom: 10px;
+            color: #a8a8a8;
+        }
+        </style>
+    </head>
+<body>
+    <form action="">
+        <label for="i1">名称</label>
+        <input id="i1" class="input-text" name="name" type="text" />
+        <div></div>
+
+        <label for="i2">密码</label>
+        <input id="i2" class="input-text" name="password" type="password" />
+        <div></div>
+
+        <label for="i3">密码确认</label>
+        <input id="i3" class="input-text" name="password-confirm" type="password" />
+        <div></div>
+
+        <label for="i4">邮箱</label>
+        <input id="i4" class="input-text" name="email" type="email" />
+        <div></div>
+
+        <label for="i5">手机</label>
+        <input id="i5" class="input-text" name="phone" type="text" />
+        <div></div>
+
+        <input id="check" type="button" value="验证" />
+    </form>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+        var inputEles = document.getElementsByTagName("input");
+        var alertText = [{hint: '必填，长度为4~16个字符', right: '名称格式正确', wrong: '名称格式错误', isNull: '名称不能为空'},
+            { hint: '必填，长度为4~16个字符', right: '密码格式正确', wrong: '密码格式错误', isNull: '密码不能为空' },
+            { hint: '再次输入相同密码', right: '密码输入一致', wrong: '密码输入不一致', isNull: '密码不能为空' },
+            { hint: '必填，输入邮箱地址', right: '邮箱格式正确', wrong: '邮箱格式错误', isNull: '邮箱不能为空' },
+            { hint: '必填，输入手机号码', right: '手机号码格式正确', wrong: '手机号码格式错误', isNull: '手机号码不能为空'}];
+        var isPassed = true;
+
+        var validate = function (ele) {
+            var alertDiv = ele.nextElementSibling || nextSibling;
+            var inputText = ele.value;
+            var flag = false;
+            var index = ele.id.slice(1) - 1;
+            switch (index) {
+                case 0:
+                    flag = /^\S{4,16}$/.test(inputText.replace(/[^\x00-\xff]/g, '00'));
+                    break;
+                case 1:
+                    flag = /^\S{4,16}$/.test(inputText);
+                    break;
+                case 2:
+                    flag = inputText === document.getElementById("i2").value;
+                    break;
+                case 3:
+                    flag = /^([a-zA-Z0-9]+[\._-]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[\._-]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/.test(inputText);
+                    break;
+                case 4:
+                    flag = /^1[34578]\d{9}$/.test(inputText);
+                    break;
+                default:
+                    break;
+            }
+            if (flag) {
+                alertDiv.style.color = '#0f0';
+                ele.style.border = '1px solid #0f0';
+                alertDiv.innerText = alertText[index].right;
+            }
+            else {
+                alertDiv.style.color = '#f00';
+                ele.style.border = '1px solid #f00';
+                if (inputText == null || inputText == "") {
+                    alertDiv.innerText = alertText[index].isNull;
+                }
+                else {
+                    alertDiv.innerText = alertText[index].wrong;
+                }
+                isPassed = false;
+            }
+            return flag;
+        };
+
+       for (var i = 0, len = inputEles.length; i < len - 1; i++) {
+           EventUtil.addHandler(inputEles[i], "focus", function (event) {
+               event = EventUtil.getEvent(event);
+               var target = EventUtil.getTarget(event);
+               (target.nextElementSibling || nextSibling).innerText = alertText[target.id.slice(1) - 1].hint;
+               target.style.border = '1px solid #00f';
+               target.style.boxShadow = '0 0 1px 2px #e7e7e7';
+           });
+           EventUtil.addHandler(inputEles[i], "blur", function (event) {
+               event = EventUtil.getEvent(event);
+               var target = EventUtil.getTarget(event);
+               target.style.boxShadow = 'none';
+               var alertDiv = target.nextElementSibling || nextSibling;
+               var inputText = target.value;
+               validate(target);
+           });
+       }
+
+        EventUtil.addHandler(document.getElementById("check"), "click", function () {
+            isPassed = true;
+            for (var i = 0, len = inputEles.length; i < len - 1; i++) {
+                validate(inputEles[i]);
+            }
+            if (isPassed) {
+                alert('提交成功');
+            }
+            else {
+                alert('提交失败');
+            }
+        });
+    </script>
+</body>
+</html>

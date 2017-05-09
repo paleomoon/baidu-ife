@@ -98,3 +98,7 @@
 - 任务一：表单（一）单个表单项的检验
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task1/task1.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task1/task1.html)  
+
+- 任务二：表单（二）多个表单项的动态校验
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task2/task2.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task2/task2.html)  
