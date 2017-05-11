@@ -84,6 +84,7 @@
             var index = ele.id.slice(1) - 1;
             switch (index) {
                 case 0:
+                //Unicode非空字符
                     flag = /^\S{4,16}$/.test(inputText.replace(/[^\x00-\xff]/g, '00'));
                     break;
                 case 1:

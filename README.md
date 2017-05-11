@@ -102,3 +102,7 @@
 - 任务二：表单（二）多个表单项的动态校验
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task2/task2.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task2/task2.html)  
+
+- 任务三：表单（三）联动
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task3/task3.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task3/task3.html)  
