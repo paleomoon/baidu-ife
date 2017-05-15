@@ -106,3 +106,7 @@
 - 任务三：表单（三）联动
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task3/task3.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task3/task3.html)  
+
+- 任务四：听指令的小方块（一）
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task4/task4.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task4/task4.html)  

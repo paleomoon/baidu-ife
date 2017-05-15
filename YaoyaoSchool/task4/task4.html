@@ -1,0 +1,177 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务四：听指令的小方块（一）</title>
+        <style type="text/css">
+        .coord {
+	        display: inline-block;
+	        width: 34.2px;
+	        height: 34.2px;
+	        line-height: 34.2px;
+	        text-align: center;
+        }
+        .hori-coord {
+	        width: 342px;
+	        height: 34.2px;
+	        margin-left: 34.2px;
+        }
+        .verti-coord {
+            display: inline-block;
+	        width: 34.2px;
+	        height: 34.2px;
+	        vertical-align: top;/*对齐*/
+        }
+        .grid-box {
+            position: relative;
+            display: inline-block;
+            width: 340px;
+            height: 340px;
+            border: 1px solid #666;
+            font-size: 0;
+            -webkit-text-size-adjust:none;/*去除空格*/
+        }
+        .grid {
+	        display: inline-block;
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ccc;
+        }
+        #move-box {
+            position: absolute;
+            top: calc(34*5px);
+            left: calc(34*5px);
+            float: left;
+            width: 34px;
+            height: 34px;
+            z-index: 2;
+            transition: .5s;
+        }
+        .top-box {
+            width: 34px;
+            height: 10px;
+            background-color: #00f;
+        }
+        .bottom-box {
+            width: 34px;
+            height: 24px;
+            background-color: #f00;
+        }
+        input[type="text"] {
+            margin-left: 34.2px;
+            }
+        </style>
+    </head>
+<body>
+    <div id="container"></div>
+    <input id="command" type="text"/>
+    <input id="execute" type="button" value="执行" />
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+        //生成横纵坐标
+        var container = document.getElementById("container");
+        var coordTag = ["hori-coord", "verti-coord"];
+        for (var i = 0; i < coordTag.length; i++) {
+            var coordDiv = document.createElement("div");
+            coordDiv.className = coordTag[i];
+            for (var j = 0; j < 10; j++) {
+                var coord = document.createElement("div");
+                coord.className = "coord";
+                coord.innerText = j + 1 + '';
+                coordDiv.appendChild(coord);
+            }
+            container.appendChild(coordDiv);
+        }
+
+        //生成网格
+        var gridBox = document.createElement("div");
+        gridBox.className = "grid-box";
+        for (var i = 0; i < 100; i++) {
+            var grid = document.createElement("div");
+            grid.className = "grid";
+            grid.id = 'n' + (i + 1);
+            gridBox.appendChild(grid);
+        }
+        container.appendChild(gridBox);
+
+        //生成移动小方块
+        var moveBox = document.createElement("div");
+        moveBox.id = "move-box";
+        var topBox = document.createElement("div");
+        topBox.className = "top-box";
+        var bottomBox = document.createElement("div");
+        bottomBox.className = "bottom-box";
+        moveBox.appendChild(topBox);
+        moveBox.appendChild(bottomBox);
+        gridBox.appendChild(moveBox);
+
+        var exe = document.getElementById("execute");
+        var direction = ['top', 'right', 'bottom', 'left'];//头部的四种方向
+        var head = direction[0];//初始方向
+        var width = 34;//小方块宽高
+        var x = 6, y = 6;//初始坐标
+        var dirTemp = 0;//方向缓存变量
+        var degree = 0;//累计旋转角度
+
+        /**
+        *用于方向循环的direction数组索引计算函数
+        */
+        var loop = function (dir) {
+            if (dir > 3) {
+                return dir - 3;
+            }
+            else if (dir < 0) {
+                return dir + 4;
+            }
+            else {
+                return dir;
+            }
+        };
+
+        EventUtil.addHandler(exe, "click", function myfunction() {
+            var movingBox = document.getElementById("move-box");
+            var command = document.getElementById("command").value;
+            switch (command) {
+                case 'GO':
+                    if (head == direction[0]) {
+                        y = (y - 1 > 0) ? (y - 1) : y;
+                    }
+                    else if (head == direction[1]) {
+                        x = (x + 1 > 10) ? x : (x + 1);
+                    }
+                    else if (head == direction[2]) {
+                        y = (y + 1 > 10) ? y : (y + 1);
+                    }
+                    else if (head == direction[3]) {
+                        x = (x - 1 > 0) ? (x - 1) : x;
+                    }
+                    movingBox.style.left = (x - 1) * width + 'px';
+                    movingBox.style.top = (y - 1) * width + 'px';
+                    break;
+                case 'TUN LEF':
+                    degree += -90;
+                    movingBox.style.transform = 'rotate(' + degree + 'deg)';
+                    dirTemp = loop(--dirTemp);//计算方向
+                    head = direction[dirTemp];//切换方向
+                    break;
+                case 'TUN RIG':
+                    degree += 90;
+                    movingBox.style.transform = 'rotate(' + degree + 'deg)';
+                    dirTemp = loop(++dirTemp);
+                    head = direction[dirTemp];
+                    break;
+                case 'TUN BAC':
+                    degree += 180;
+                    movingBox.style.transform = 'rotate(' + degree + 'deg)';
+                    dirTemp += 2;
+                    dirTemp = loop(dirTemp);
+                    head = direction[dirTemp];
+                    break;
+                default:
+                    break;
+
+            }
+        });
+    </script>
+</body>
+</html>
