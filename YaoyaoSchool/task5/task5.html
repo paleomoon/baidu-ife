@@ -200,7 +200,8 @@
                         degree += 90;
                     }
                     movingBox.style.transform = 'rotate(' + degree + 'deg)';
-                    head = direction[3];
+                    dirTemp = 3;
+                    head = direction[dirTemp];
                     move(head);
                     break;
                 case 'MOV TOP':
@@ -214,7 +215,8 @@
                         degree += 90;
                     }
                     movingBox.style.transform = 'rotate(' + degree + 'deg)';
-                    head = direction[0];
+                    dirTemp = 0;
+                    head = direction[dirTemp];
                     move(head);
                     break;
                 case 'MOV RIG':
@@ -228,7 +230,8 @@
                         degree += 180;
                     }
                     movingBox.style.transform = 'rotate(' + degree + 'deg)';
-                    head = direction[1];
+                    dirTemp = 1;
+                    head = direction[dirTemp];
                     move(head);
                     break;
                 case 'MOV BOT':
@@ -242,7 +245,8 @@
                         degree += -90;
                     }
                     movingBox.style.transform = 'rotate(' + degree + 'deg)';
-                    head = direction[2];
+                    dirTemp = 2;
+                    head = direction[dirTemp];
                     move(head);
                     break;
                 default:
