@@ -110,3 +110,7 @@
 - 任务四：听指令的小方块（一）
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task4/task4.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task4/task4.html)  
+
+- 任务五：听指令的小方块（二）
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task5/task5.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task5/task5.html)  
