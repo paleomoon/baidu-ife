@@ -1,0 +1,135 @@
+<!DOCTYPE html >
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>任务六：UI组件之浮出层</title>
+        <style type="text/css">
+        body > div {
+            position: relative;
+            width: 100%;
+            height: 2000px;
+            background-color: #A6596D;
+        }
+        #mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            opacity: .5;
+        }
+        #float-layer {
+            position: fixed;
+            display: none;
+            width: 30%;
+            height: 300px;
+            background-color: #69C998;
+            z-index: 10;
+        }
+        #fl-header {
+            height: 40px;
+            line-height: 40px;
+            background-color: #ccc;
+            text-indent: 1em;
+        }
+        #float-layer > p {
+            text-indent: 1em;
+        }
+        #float-layer > input {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            margin: 4px;
+        }
+        #float-layer > input:first-of-type {
+            right: 50px;
+        }
+        </style>
+    </head>
+<body>
+    <div>
+        <input id="login-btn" type="button" value="登录" />
+        <div id="mask">
+            <div id="float-layer">
+                <div id="fl-header"> 这是一个浮出层</div>
+                <p> 这是一个浮出层</p>
+                <input id="sure-btn" type="button" value="确定" />
+                <input id="cancel-btn" type="button" value="取消" />
+            </div>
+        </div>  
+    </div>
+    <script type="text/javascript" src="EventUtil.js"></script>
+    <script type="text/javascript">
+        var $ = function(ele) {
+            return document.querySelector(ele);
+        };
+
+        var FloatLayer = function (ele) {
+            this.element = ele;
+            this.mask = ele.parentNode;
+
+            this.init();
+        }; 
+
+        FloatLayer.prototype = {
+            show: function () {
+                this.mask.style.display = 'block';
+
+                this.element.style.display = 'block';
+
+                //可视窗口大小
+                var wWidth = document.documentElement.clientWidth || document.body.clientWidth;
+                var wHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+                //浮出层元素大小
+                var eWidth = this.element.offsetWidth; //display:none不能获取offsetWidth
+                var eHeight = this.element.offsetHeight;
+
+                this.element.style.left = (wWidth - eWidth) / 2 + 'px';
+                this.element.style.top = (wHeight - eHeight) / 2 + 'px';
+            },
+
+            hide: function () {
+                this.mask.style.display = 'none';
+                this.element.style.display = 'none';
+            },
+
+            init: function () {
+                var self = this;
+                EventUtil.addHandler(this.mask, 'click', function () {
+                    self.hide();
+                });
+
+                //阻止事件冒泡
+                EventUtil.addHandler(this.element, 'click', function (e) {
+                    e = EventUtil.getEvent(e);
+                    EventUtil.stopPropagation(event);
+                });
+            }
+        };
+
+        var createFloatLayer = function (ele) {
+            return new FloatLayer(ele);
+        };
+
+        (function () {
+            var layer = createFloatLayer($('#float-layer'));
+
+            EventUtil.addHandler($('#login-btn'), 'click', function () {
+                layer.show();
+            });
+
+            EventUtil.addHandler($('#sure-btn'), 'click', function () {
+                layer.hide();
+            });
+
+            EventUtil.addHandler($('#cancel-btn'), 'click', function () {
+                layer.hide();
+            });
+
+        })();
+    </script>
+</body>
+</html>

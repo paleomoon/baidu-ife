@@ -114,3 +114,7 @@
 - 任务五：听指令的小方块（二）
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task5/task5.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task5/task5.html)  
+
+- 任务六：UI组件之浮出层
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task6/task6.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task6/task6.html)  
