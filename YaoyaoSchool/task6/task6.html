@@ -1,9 +1,13 @@
 <!DOCTYPE html >
 <html>
     <head>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>任务六：UI组件之浮出层</title>
         <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
         body > div {
             position: relative;
             width: 100%;
@@ -33,6 +37,7 @@
             line-height: 40px;
             background-color: #ccc;
             text-indent: 1em;
+            cursor: move;
         }
         #float-layer > p {
             text-indent: 1em;
@@ -51,9 +56,9 @@
 <body>
     <div>
         <input id="login-btn" type="button" value="登录" />
-        <div id="mask">
-            <div id="float-layer">
-                <div id="fl-header"> 这是一个浮出层</div>
+        <div id="mask" onselectstart="return false;">
+            <div id="float-layer" onselectstart="return false;">
+                <div id="fl-header" onselectstart="return false;"> 这是一个浮出层</div><!-- 禁止鼠标选中事件，防止元素到界面边界仍可以单独拖出的情况 -->
                 <p> 这是一个浮出层</p>
                 <input id="sure-btn" type="button" value="确定" />
                 <input id="cancel-btn" type="button" value="取消" />
@@ -69,9 +74,11 @@
         var FloatLayer = function (ele) {
             this.element = ele;
             this.mask = ele.parentNode;
-
+            this.isDragging = false;
+            this.mouseOffsetX = 0; //鼠标按下时相对于浮层左上角位置
+            this.mouseOffsetY = 0;
             this.init();
-        }; 
+        };
 
         FloatLayer.prototype = {
             show: function () {
@@ -106,6 +113,40 @@
                 EventUtil.addHandler(this.element, 'click', function (e) {
                     e = EventUtil.getEvent(e);
                     EventUtil.stopPropagation(event);
+                });
+
+                EventUtil.addHandler($('#fl-header'), 'mousedown', function (e) {
+                    e = EventUtil.getEvent(e);
+                    self.isDragging = true;
+                    self.mouseOffsetX = e.pageX - self.element.offsetLeft;//注意元素移动offsetLeft也会移动
+                    self.mouseOffsetY = e.pageY - self.element.offsetTop;
+                });
+
+                EventUtil.addHandler(document, 'mousemove', function (e) {
+                    if (self.isDragging === true) {
+                        e = EventUtil.getEvent(e);
+                        var moveX = e.pageX - self.mouseOffsetX;//浮层新位置
+                        var moveY = e.pageY - self.mouseOffsetY;
+
+                        var wWidth = document.documentElement.clientWidth || document.body.clientWidth;
+                        var wHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+                        var eWidth = self.element.offsetWidth; 
+                        var eHeight = self.element.offsetHeight;
+
+                        var maxX = wWidth - eWidth;
+                        var maxY = wHeight - eHeight;
+
+                        moveX = moveX > 0 ? (moveX > maxX ? maxX : moveX) : 0;
+                        moveY = moveY > 0 ? (moveY > maxY ? maxY : moveY) : 0;
+
+                        self.element.style.left =  moveX + 'px';
+                        self.element.style.top =  moveY  + 'px';
+                    }
+                });
+
+                EventUtil.addHandler(document, 'mouseup', function (e) {
+                    self.isDragging = false;
                 });
             }
         };
