@@ -122,7 +122,7 @@
                     self.mouseOffsetY = e.pageY - self.element.offsetTop;
                 });
 
-                EventUtil.addHandler(document, 'mousemove', function (e) {
+                EventUtil.addHandler(document, 'mousemove', function (e) {//鼠标移动可能会超出#fl-header的范围，故在document上添加移动事件
                     if (self.isDragging === true) {
                         e = EventUtil.getEvent(e);
                         var moveX = e.pageX - self.mouseOffsetX;//浮层新位置
@@ -145,7 +145,7 @@
                     }
                 });
 
-                EventUtil.addHandler(document, 'mouseup', function (e) {
+                EventUtil.addHandler(document, 'mouseup', function (e) {//在document上添加鼠标弹起事件
                     self.isDragging = false;
                 });
             }
