@@ -4,26 +4,23 @@
         <meta charset="utf-8">
         <title>任务七：UI组件之排序表格</title>
         <style type="text/css">
-            table 
-            {
+            table {
                 border-collapse: collapse;
                 font-size: 18px;
-                }
+            }
             table td,
-            table th 
-            {
+            table th {
                 width: 100px;
                 height: 60px;
                 border: 1px solid #000;
                 line-height: 60px;
                 text-align: center;
                 vertical-align: middle;
-                }
-            table thead 
-            {
+            }
+            table thead {
                 background-color: #ccc;
                 color: #fff;
-                }
+            }
             .arrow-up {
                 position: absolute;
                 top: 0;
@@ -140,11 +137,9 @@
         */
         var refreshTable = function (arr) {
             var table = document.getElementsByTagName('table');
-
             //var thead = table[0].tHead;
 
             var tbody = table[0].tBodies;
-
             //tableContent.head.forEach(function (item, index) {
             //    thead.rows[0].cells[index].appendChild(document.createTextNode(item));
             //});
@@ -188,7 +183,6 @@
             });
             return tbArr;
         };
-
     </script>
 </body>
 </html>
