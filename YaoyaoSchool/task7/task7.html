@@ -33,6 +33,7 @@
                 border-left: 4px solid transparent;
                 border-right: 4px solid transparent;
                 border-bottom: 8px solid #fff;
+                cursor: pointer;
             }
             .arrow-down {
                 position: absolute;
@@ -43,6 +44,7 @@
                 border-left: 4px solid transparent;
                 border-right: 4px solid transparent;
                 border-top: 8px solid #fff;
+                cursor: pointer;
             }
             .arrow {
                 position: absolute;
@@ -59,55 +61,134 @@
 <body>
     <script type="text/javascript" src="EventUtil.js"></script>
     <script type="text/javascript">
-        var $ = function(ele) {
-            return document.querySelector(ele);
-        };
+        /*
+        *动态定义表格内容,之后通过createTable()生成表格
+        */
         var tableContent = {
+            rowNum: 6,
             colNum: 5,
-            tHead: ['姓名', '语文', '数学', '英语', '总分'],
-            tBody: [
+            head: ['姓名', '语文', '数学', '英语', '总分'],
+            body: [
                 ['小明', 70, 80, 90, 240], 
                 ['小红', 90, 90, 90, 270], 
-                ['小亮', 70, 70, 70, 210]
+                ['小亮', 70, 70, 70, 210],
+                ['小2', 10, 20, 30, 60],
+                ['小3', 30, 60, 90, 180]
             ],
+            canSort: [1, 2, 3, 4]//指定需要排序的列，从0开始
         };
 
-        var table = document.createElement('table'); //
+        /*
+        *根据表格内容生成表格，并绑定排序事件
+        */
+        (function createTable() {
+            var table = document.createElement('table');
 
-        var thead = table.createTHead();
-        thead.insertRow(0);
-        tableContent.tHead.forEach(function (item, index) {
-            thead.rows[0].insertCell(index);
-            
-            var headContent = document.createElement('div');
-            headContent.style.position = 'relative';
-            headContent.appendChild(document.createTextNode(item));
+            var thead = table.createTHead();
 
-            var arrowDiv = document.createElement('div');
-            arrowDiv.className = 'arrow';
-            var arrowUp = document.createElement('div');
-            arrowUp.className = 'arrow-up';
-            var arrowDown = document.createElement('div');
-            arrowDown.className = 'arrow-down';
-            arrowDiv.appendChild(arrowUp);
-            arrowDiv.appendChild(arrowDown);
+            thead.insertRow(0);
+            for (var i = 0; i < tableContent.colNum; i++) {
+                thead.rows[0].insertCell(i);
 
-            headContent.appendChild(arrowDiv);
-            thead.rows[0].cells[index].appendChild(headContent);
-            
-        });
-        
-        var tbody = document.createElement('tbody');
-        table.appendChild(tbody);
-        tableContent.tBody.forEach(function (item, index) {
-            tbody.insertRow(index);
-            item.forEach(function (v, i) {
-                tbody.rows[index].insertCell(i);
-                tbody.rows[index].cells[i].appendChild(document.createTextNode(v));
+                var headContent = document.createElement('div');
+                headContent.style.position = 'relative';
+                headContent.innerText = tableContent.head[i];
+
+                if (tableContent.canSort.some(function (item) {
+                    return item === i;
+                })) {
+                    var arrowDiv = document.createElement('div');
+                    arrowDiv.className = 'arrow';
+                    var arrowUp = document.createElement('div');
+                    arrowUp.className = 'arrow-up';
+                    var arrowDown = document.createElement('div');
+                    arrowDown.className = 'arrow-down';
+                    arrowDiv.appendChild(arrowUp);
+                    arrowDiv.appendChild(arrowDown);
+
+                    headContent.appendChild(arrowDiv);
+
+                    //处理闭包
+                    (function (num) {
+                        EventUtil.addHandler(arrowUp, 'click', function () {
+                            refreshTable(sortCol(num, 'asc'));
+                        });
+                        EventUtil.addHandler(arrowDown, 'click', function () {
+                            refreshTable(sortCol(num, 'desc'));
+                        });
+                    })(i);
+                }
+
+                thead.rows[0].cells[i].appendChild(headContent);
+            }
+
+            var tbody = document.createElement('tbody');
+            table.appendChild(tbody);
+            for (var i = 0; i < tableContent.rowNum - 1; i++) {
+                tbody.insertRow(i);
+                for (var j = 0; j < tableContent.colNum; j++) {
+                    tbody.rows[i].insertCell(j);
+                    tbody.rows[i].cells[j].innerText = tableContent.body[i][j];
+                }
+            }
+
+            document.body.appendChild(table);
+        })();
+
+        /*
+        *刷新表格tbody
+        */
+        var refreshTable = function (arr) {
+            var table = document.getElementsByTagName('table');
+
+            //var thead = table[0].tHead;
+
+            var tbody = table[0].tBodies;
+
+            //tableContent.head.forEach(function (item, index) {
+            //    thead.rows[0].cells[index].appendChild(document.createTextNode(item));
+            //});
+
+            arr.forEach(function (item, index) {
+                item.forEach(function (v, i) {
+                    tbody[0].rows[index].cells[i].innerText = v;
+                });
             });
-        });
+        };
 
-        document.body.appendChild(table);
+        /*
+        *表格按指定列排序
+        *@param colIndex 列在整个表格的索引，如第一列colIndex=0
+        *@param flag 'asc'-升序 'desc'-降序
+        *@return 排序后的内容
+        */
+        var sortCol = function (colIndex, flag) {
+            var colArr = []; //colIndex列原数据
+            tableContent.body.forEach(function (item) {
+                colArr.push(item[colIndex]);
+            });
+
+            var sortArr = colArr.slice(0);//copy一份
+            if (flag == 'asc') {
+                sortArr.sort(function (a, b) {
+                    return a - b;
+                });
+            }
+            else if (flag == 'desc') {
+                sortArr.sort(function (a, b) {
+                    return b - a;
+                });
+            }
+
+            var tbArr = []; //表格排序后
+            sortArr.forEach(function (v, i) {
+                var loc = colArr.indexOf(v); //colIndex列排序后的元素在原数组的位置
+                colArr[loc] = null; //清除原数组对应元素防止重复
+                tbArr.push(tableContent.body[loc]);
+            });
+            return tbArr;
+        };
+
     </script>
 </body>
 </html>

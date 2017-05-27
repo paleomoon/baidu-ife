@@ -118,3 +118,7 @@
 - 任务六：UI组件之浮出层
     - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task6/task6.html)
     - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task6/task6.html)  
+
+- 任务七：UI组件之排序表格
+    - [代码地址](https://github.com/JimHoo/baidu-ife/blob/gh-pages/YaoyaoSchool/task7/task7.html)
+    - [预览地址](https://jimhoo.github.io/baidu-ife/YaoyaoSchool/task7/task7.html)  
