@@ -157,6 +157,9 @@
         *@param flag 'asc'-升序 'desc'-降序
         *@return 排序后的内容
         */
+        
+        /*
+        //方法一
         var sortCol = function (colIndex, flag) {
             var colArr = []; //colIndex列原数据
             tableContent.body.forEach(function (item) {
@@ -182,6 +185,23 @@
                 tbArr.push(tableContent.body[loc]);
             });
             return tbArr;
+        };
+        */
+        //方法二
+        var sortCol = function (colIndex, flag) {
+            return tableContent.body.sort(function (o, p) {
+                    var a = o[colIndex];
+                    var b = p[colIndex];
+                    if (a === b) {
+                        return 0;
+                    }
+                    if (flag == 'asc') {
+                        return a < b ? -1 : 1;
+                    }
+                    else if (flag == 'desc') {
+                        return b < a ? -1 : 1;
+                }
+            });
         };
     </script>
 </body>
