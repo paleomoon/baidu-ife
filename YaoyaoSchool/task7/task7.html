@@ -72,7 +72,7 @@
                 ['小2', 10, 20, 30, 60],
                 ['小3', 30, 60, 90, 180]
             ],
-            canSort: [1, 2, 3, 4]//指定需要排序的列，从0开始
+            sortable: [1, 2, 3, 4]//指定需要排序的列，从0开始
         };
 
         /*
@@ -91,7 +91,7 @@
                 headContent.style.position = 'relative';
                 headContent.innerText = tableContent.head[i];
 
-                if (tableContent.canSort.some(function (item) {
+                if (tableContent.sortable.some(function (item) {
                     return item === i;
                 })) {
                     var arrowDiv = document.createElement('div');
