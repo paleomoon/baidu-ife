@@ -51,6 +51,31 @@
         #float-layer > input:first-of-type {
             right: 50px;
         }
+        /*调整面板大小*/
+        .ui-resizable-r {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 10px;
+            height: 100%;
+            cursor: e-resize;
+        }
+        .ui-resizable-b {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 10px;
+            cursor: s-resize;
+        }
+        .ui-resizable-rb {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 10px;
+            height: 10px;
+            cursor: nw-resize;
+        }
         </style>
     </head>
 <body>
@@ -155,6 +180,91 @@
             return new FloatLayer(ele);
         };
 
+        var resizePanel = function (panelId, minWidth, minHeight) {
+            var panel = document.getElementById(panelId);
+            minWidth = minWidth - 10;
+            minHeight = minHeight -10;
+            var Control = function (type) {
+                this.type = type;
+                this.isMoving = false;
+                this.startX = 0;
+                this.startY = 0;
+                this.init();
+            };
+
+            Control.prototype = {
+                init: function () {
+                    this.element = document.createElement("div");
+                    this.element.className  = "ui-resizable-" + this.type;
+                    this.element.classList.add("ui-resizable-ctrl");
+
+                    panel.appendChild(this.element);
+
+                    var self = this;
+                    this.element.addEventListener("mousedown", function (e) {
+                        self.isMoving = true;
+                        var e = e || window.event;
+                        self.startX = e.pageX - self.element.offsetLeft;//鼠标按下时相对于控制元素的位置
+                        self.startY = e.pageY - self.element.offsetTop;
+
+                        //拖动过程中触发了浏览器的 drag 操作，导致mouseup丢失的解决方法
+                        var pauseEvent = function (event){
+                            //不仅仅要stopPropagation，还要preventDefault
+                            if(e.stopPropagation) 
+                                e.stopPropagation();
+                            if(e.preventDefault) 
+                                e.preventDefault();
+                            e.cancelBubble=true;
+                            e.returnValue=false;
+                            return false;
+                        };
+                        pauseEvent(e);
+                    }, false);
+
+                    document.addEventListener("mousemove", function (e) {
+
+                        if (self.isMoving) {
+                            var e = e || window.event;
+                            var ctrlMoveX = e.pageX - self.startX;//控制元素新位置
+                            var ctrlMoveY = e.pageY - self.startY;
+                            ctrlMoveX = ctrlMoveX > minWidth ? ctrlMoveX : minWidth;
+                            ctrlMoveY = ctrlMoveY > minHeight ? ctrlMoveY : minHeight;
+                            switch(self.type) {
+                                case 'r':
+                                    self.element.style.left = ctrlMoveX + 'px';
+                                    panel.style.width = ctrlMoveX + self.element.offsetWidth + 'px';
+                                    break;
+                                case 'b':
+                                    self.element.style.top = ctrlMoveY + 'px';
+                                    panel.style.height = ctrlMoveY + self.element.offsetHeight + 'px';
+                                    break;
+                                case 'rb':
+                                    self.element.style.left = ctrlMoveX + 'px';
+                                    self.element.style.top = ctrlMoveY + 'px';
+                                    panel.style.width = ctrlMoveX + self.element.offsetWidth + 'px';
+                                    panel.style.height = ctrlMoveY + self.element.offsetHeight + 'px';
+                                    break;
+                            }
+                        }
+                        
+                    }, false);
+
+                    document.addEventListener("mouseup", function (e) {
+                        self.isMoving = false;
+                        var ctrls = document.getElementsByClassName("ui-resizable-ctrl");
+                        for (var i = 0, len = ctrls.length; i < len; i++) {
+                            ctrls[i].style.left = "";//style属性只能获取内联样式的值，设为空表示恢复默认，即样式表中的设置。
+                            ctrls[i].style.top = "";
+                        }
+                    }, false);
+                }
+            };
+
+            var rCtrl = new Control("r");
+            var bCtrl = new Control("b");
+            var rbCtrl = new Control("rb");
+        };
+
         (function () {
             var layer = createFloatLayer($('#float-layer'));
 
@@ -169,6 +279,8 @@
             EventUtil.addHandler($('#cancel-btn'), 'click', function () {
                 layer.hide();
             });
+
+            resizePanel("float-layer", 100, 90);
 
         })();
     </script>
