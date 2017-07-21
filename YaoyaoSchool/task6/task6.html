@@ -180,12 +180,18 @@
             return new FloatLayer(ele);
         };
 
+        /**
+         *右、下、右下调整面板大小
+         *@param {string} panelId 面板元素id
+         *@param {number} minWidth 可调整到的最小宽度
+         *@param {number} minHeight 可调整到的最小高度
+         */
         var resizePanel = function (panelId, minWidth, minHeight) {
             var panel = document.getElementById(panelId);
             minWidth = minWidth - 10;
             minHeight = minHeight -10;
             var Control = function (type) {
-                this.type = type;
+                this.type = type;//控制元素类型 'r','b','rb'
                 this.isMoving = false;
                 this.startX = 0;
                 this.startY = 0;
@@ -204,35 +210,45 @@
                     this.element.addEventListener("mousedown", function (e) {
                         self.isMoving = true;
                         var e = e || window.event;
-                        self.startX = e.pageX - self.element.offsetLeft;//鼠标按下时相对于控制元素的位置
+                        self.startX = e.pageX - self.element.offsetLeft;//鼠标按下时鼠标相对于控制元素的位置
                         self.startY = e.pageY - self.element.offsetTop;
 
                         //拖动过程中触发了浏览器的 drag 操作，导致mouseup丢失的解决方法
-                        var pauseEvent = function (event){
+                        (function (event){
                             //不仅仅要stopPropagation，还要preventDefault
-                            if(e.stopPropagation) 
-                                e.stopPropagation();
-                            if(e.preventDefault) 
-                                e.preventDefault();
-                            e.cancelBubble=true;
-                            e.returnValue=false;
+                            if(event.stopPropagation) 
+                                event.stopPropagation();
+                            if(event.preventDefault) 
+                                event.preventDefault();
+                            event.cancelBubble=true;
+                            event.returnValue=false;
                             return false;
-                        };
-                        pauseEvent(e);
+                        }(e));
                     }, false);
 
                     document.addEventListener("mousemove", function (e) {
 
                         if (self.isMoving) {
                             var e = e || window.event;
-                            var ctrlMoveX = e.pageX - self.startX;//控制元素新位置
+                            var ctrlMoveX = e.pageX - self.startX;//控制元素在父元素中的新位置
                             var ctrlMoveY = e.pageY - self.startY;
-                            ctrlMoveX = ctrlMoveX > minWidth ? ctrlMoveX : minWidth;
-                            ctrlMoveY = ctrlMoveY > minHeight ? ctrlMoveY : minHeight;
+
+                            //最大不超过页面
+                            var bodyWidth = document.documentElement.clientWidth || document.body.clientWidth;
+                            var bodyHeight = document.documentElement.clientHeight || document.body.clientHeight;
+                            var panelX = panel.offsetLeft;
+                            var panelY = panel.offsetTop;
+                            var ctrlMaxX = bodyWidth - panelX - self.element.offsetWidth;
+                            var ctrlMaxY = bodyHeight - panelY - self.element.offsetHeight;
+
+
+                            ctrlMoveX = ctrlMoveX > minWidth ? (ctrlMoveX > ctrlMaxX ? ctrlMaxX : ctrlMoveX) : minWidth;
+                            ctrlMoveY = ctrlMoveY > minHeight ? (ctrlMoveY > ctrlMaxY ? ctrlMaxY : ctrlMoveY) : minHeight;
+
                             switch(self.type) {
                                 case 'r':
                                     self.element.style.left = ctrlMoveX + 'px';
-                                    panel.style.width = ctrlMoveX + self.element.offsetWidth + 'px';
+                                    panel.style.width = ctrlMoveX + self.element.offsetWidth + 'px';//加上控制元素的宽度
                                     break;
                                 case 'b':
                                     self.element.style.top = ctrlMoveY + 'px';
@@ -249,11 +265,11 @@
                         
                     }, false);
 
-                    document.addEventListener("mouseup", function (e) {
+                    document.addEventListener("mouseup", function () {
                         self.isMoving = false;
                         var ctrls = document.getElementsByClassName("ui-resizable-ctrl");
                         for (var i = 0, len = ctrls.length; i < len; i++) {
-                            ctrls[i].style.left = "";//style属性只能获取内联样式的值，设为空表示恢复默认，即样式表中的设置。
+                            ctrls[i].style.left = "";//style属性只能获取内联样式的值，设为空表示恢复默认，即样式表中的设置，这样鼠标弹起就会恢复右、下、右下的位置。
                             ctrls[i].style.top = "";
                         }
                     }, false);
